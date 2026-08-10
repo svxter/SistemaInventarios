@@ -17,9 +17,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- CATÁLOGO MAESTRO DE ÁREAS INSTITUCIONALES  ---
+# --- CATÁLOGO MAESTRO DE ÁREAS INSTITUCIONALES (Completas y sin abreviaciones) ---
 AREAS_MAESTRAS = [
-    "DIRECCION DE GESTION INSTITUCIONAL",
+    "DIRECCIÓN DE GESTIÓN INSTITUCIONAL",
     "ÓRGANO INTERNO DE CONTROL",
     "DIRECCIÓN GENERAL DE ASISTENCIA, ATENCIÓN Y PROTECCIÓN",
     "SUBSECRETARÍA DE INCLUSIÓN Y DESARROLLO",
@@ -42,7 +42,7 @@ AREAS_MAESTRAS = [
 ]
 
 LISTA_RESPONSABLES = [
-  "RICARDO GÓMEZ MORENO",
+    "RICARDO GÓMEZ MORENO",
 "MARLEN ELVA ARISTA AMADOR",
 "JOSUÉ RAYMUNDO SÁNCHEZ ÁVALOS",
 "PAUL GIOVANNI SÁNCHEZ NIETO",
@@ -331,31 +331,58 @@ with tab_edicion:
     if os.path.exists(archivo):
       try:
         xls = pd.ExcelFile(archivo)
-        primera_pestana = xls.sheet_names[0]
-        # dtype=str previene que los guiones en números de inventario sufran alteraciones
-        df = pd.read_excel(
-            archivo, sheet_name=primera_pestana, header=29, dtype=str
-        )
+        df = pd.read_excel(archivo, sheet_name=xls.sheet_names[0], header=None)
+        
+        # Búsqueda automática de la fila de encabezados real
+        header_idx = 29
+        for idx, row in df.iterrows():
+          row_str = str(row.values).lower()
+          if "inventario" in row_str and "no" in row_str:
+            header_idx = idx
+            break
 
+        df = pd.read_excel(
+            archivo, sheet_name=xls.sheet_names[0], header=header_idx, dtype=str
+        )
         df = df.dropna(
             subset=[col for col in df.columns if "Inventario" in str(col)]
         ).reset_index(drop=True)
 
-        if "Nombre " in df.columns:
-          df.rename(columns={"Nombre ": "DESCRIPCION"}, inplace=True)
-        if "Marc " in df.columns:
-          df.rename(columns={"Marc ": "MARCA"}, inplace=True)
-        if "Modelo " in df.columns:
-          df.rename(columns={"Modelo ": "MODELO"}, inplace=True)
-        if "Serie " in df.columns:
-          df.rename(columns={"Serie ": "SERIE"}, inplace=True)
-        if "Descripción" in df.columns:
-          df.rename(columns={"Descripción": "CARACTERISTICAS"}, inplace=True)
+        # Mapeo limpio para unificar los nombres de las columnas exactamente como los pides
+        renombres = {}
+        for col in df.columns:
+          c_lower = str(col).lower().strip()
+          if "no." in c_lower and "inventario" not in c_lower:
+            renombres[col] = "NO."
+          elif "inventario" in c_lower:
+            renombres[col] = "INVENTARIO"
+          elif "nombre" in c_lower and "usuario" not in c_lower and "servidor" not in c_lower:
+            renombres[col] = "DESCRIPCION"
+          elif "marc" in c_lower:
+            renombres[col] = "MARCA"
+          elif "modelo" in c_lower:
+            renombres[col] = "MODELO"
+          elif "serie" in c_lower:
+            renombres[col] = "SERIE"
+          elif "descripción" in c_lower or "caracteristicas" in c_lower:
+            renombres[col] = "CARACTERISTICAS"
+
+        df.rename(columns=renombres, inplace=True)
+        
+        # Eliminamos columnas basura o 'Unnamed'
+        df = df.loc[
+            :, ~df.columns.astype(str).str.contains("^Unnamed", case=False)
+        ]
 
         if "AREA" not in df.columns:
           df["AREA"] = "DIRECCIÓN DE RECURSOS MATERIALES"
         if "NOMBRE DEL USUARIO" not in df.columns:
           df["NOMBRE DEL USUARIO"] = ""
+        if "OBSERVACIONES" in df.columns and "OBSERVACION" not in df.columns:
+          df.rename(columns={"OBSERVACIONES": "OBSERVACION"}, inplace=True)
+        if "OBSERVACION" not in df.columns:
+          df["OBSERVACION"] = ""
+
         return df.fillna("")
       except Exception as e:
         st.error(f"Error al leer el archivo {archivo}: {e}")
@@ -405,7 +432,7 @@ with tab_edicion:
       with st.form("form_nuevo_bien"):
         c1, c2, c3 = st.columns(3)
         with c1:
-          nuevo_inv = st.text_input("No. Inventario")
+          nuevo_inv = st.text_input("Inventario")
           nuevo_desc = st.text_input("Descripción", "SILLA PLEGABLE")
           nuevo_marca = st.text_input("Marca", "SIN MARCA")
         with c2:
@@ -425,26 +452,15 @@ with tab_edicion:
 
         if btn_agregar:
           nuevo_registro = {
-              (
-                  "INVENTARIO"
-                  if "INVENTARIO" in df.columns
-                  else "No. Inventario"
-              ): str(nuevo_inv),
-              (
-                  "DESCRIPCION" if "DESCRIPCION" in df.columns else "Nombre "
-              ): str(nuevo_desc),
-              "MARCA" if "MARCA" in df.columns else "Marc ": str(nuevo_marca),
-              "MODELO" if "MODELO" in df.columns else "Modelo ": str(
-                  nuevo_modelo
-              ),
-              "SERIE" if "SERIE" in df.columns else "Serie ": str(nuevo_serie),
-              (
-                  "CARACTERISTICAS"
-                  if "CARACTERISTICAS" in df.columns
-                  else "Descripción"
-              ): str(nuevo_carac),
+              "INVENTARIO": str(nuevo_inv),
+              "DESCRIPCION": str(nuevo_desc),
+              "MARCA": str(nuevo_marca),
+              "MODELO": str(nuevo_modelo),
+              "SERIE": str(nuevo_serie),
+              "CARACTERISTICAS": str(nuevo_carac),
               "NOMBRE DEL USUARIO": str(nuevo_usuario),
               columna_area: str(nueva_area_reg),
+              "OBSERVACION": str(nuevo_obs),
           }
           df = pd.concat(
               [df, pd.DataFrame([nuevo_registro])], ignore_index=True
@@ -453,7 +469,7 @@ with tab_edicion:
           st.success("¡Bien registrado correctamente!")
           st.rerun()
 
-    # --- 4. PANEL PRINCIPAL: TABLA EDITABLE ---
+    # --- 4. PANEL PRINCIPAL: TABLA EDITABLE CON ENCABEZADOS LIMPIOS ---
     st.subheader(
         f"Visualizando registros de: {opcion_bd} (Área: {area_seleccionada})"
     )
@@ -468,7 +484,7 @@ with tab_edicion:
 
     if st.button("💾 Guardar Cambios en Excel"):
       try:
-        df.update(df_editado)
+        df.update(df_editado.astype(str))
         df.to_excel(opcion_bd, index=False)
         st.success("¡Cambios guardados en el archivo de Excel con éxito!")
       except Exception as e:
@@ -503,7 +519,7 @@ with tab_edicion:
           pdf.add_page()
           pdf.set_auto_page_break(auto=True, margin=10)
 
-          # --- LOGOTIPO INSTITUCIONAL (Más grande, con ancho de 62mm) ---
+          # --- LOGOTIPO INSTITUCIONAL ---
           if os.path.exists("BIENESTAR8.png"):
             pdf.image("BIENESTAR8.png", x=10, y=8, w=62)
 
@@ -523,7 +539,7 @@ with tab_edicion:
           pdf.cell(0, 4, "RESGUARDO INDIVIDUAL INTERNO", 0, 1, "C")
           pdf.ln(5)
 
-          # Datos de Área y Fecha (Área completa sin abreviaciones)
+          # Datos de Área y Fecha
           fecha_hoy = datetime.now().strftime("%d/%m/%Y")
           pdf.set_font("Arial", "B", 8)
           pdf.cell(15, 6, "AREA:", 0, 0, "L")
@@ -535,7 +551,6 @@ with tab_edicion:
           pdf.cell(30, 6, fecha_hoy, 0, 1, "R")
           pdf.ln(2)
 
-          # Configuración de columnas (Ancho total exacto = 257 mm)
           headers = [
               "No.",
               "INVENTARIO",
@@ -554,29 +569,16 @@ with tab_edicion:
             pdf.cell(widths[i], 5, h, 1, 0, "C")
           pdf.ln()
 
-          # Filas con manejo limpio de altura automática por celda multilínea
           pdf.set_font("Arial", "", 6)
           for idx, (_, row) in enumerate(df_editado.iterrows(), start=1):
-            inv_val = str(
-                row.get(
-                    "INVENTARIO",
-                    row.get(
-                        "No. Inventario",
-                        row.get("NO. INTERNO DE INVENTARIO", ""),
-                    ),
-                )
-            )
-            desc_val = str(row.get("DESCRIPCION", row.get("Nombre ", "")))
-            marca_val = str(row.get("MARCA", row.get("Marc ", "SIN MARCA")))
-            modelo_val = str(row.get("MODELO", row.get("Modelo ", "SIN MODELO")))
-            serie_val = str(row.get("SERIE", row.get("Serie ", "S/S")))
-            carac_val = str(
-                row.get("CARACTERISTICAS", row.get("Descripción", ""))
-            )
+            inv_val = str(row.get("INVENTARIO", ""))
+            desc_val = str(row.get("DESCRIPCION", ""))
+            marca_val = str(row.get("MARCA", "SIN MARCA"))
+            modelo_val = str(row.get("MODELO", "SIN MODELO"))
+            serie_val = str(row.get("SERIE", "S/S"))
+            carac_val = str(row.get("CARACTERISTICAS", ""))
             usu_val = str(row.get("NOMBRE DEL USUARIO", ""))
-            obs_val = str(
-                row.get("OBSERVACIONES", row.get("OBSERVACION", ""))
-            )
+            obs_val = str(row.get("OBSERVACION", ""))
 
             cell_data = [
                 str(idx),
@@ -673,6 +675,4 @@ with tab_edicion:
           st.error(f"Error al generar el PDF: {e}")
 
   else:
-    st.warning(
-        "No se encontraron registros válidos en la base de datos seleccionada."
-    )
+    st.warning("No se encontraron registros válidos en la base de datos.")
