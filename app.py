@@ -17,43 +17,281 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- CATÁLOGO MAESTRO DE ÁREAS INSTITUCIONALES ---
+# --- CATÁLOGO MAESTRO DE ÁREAS INSTITUCIONALES  ---
 AREAS_MAESTRAS = [
     "DIRECCION DE GESTION INSTITUCIONAL",
-    "DIRECCION GENERAL DE FOMENTO ARTESANAL",
-    "DIRRECION GENERAL DE ATENCION AL MIGRANTE",
-    "SUBSECRETARIA DE INCLUSION Y DESARROLLO",
-    "SUBSECRETARIA DE DESARROLLO SOCIAL Y HUMANO",
-    (
-        "DIRECCION GENERAL DE PROSPECTIVA, PLANEACION Y EVALUACION DE LOS"
-        " PROGRAMAS SOCIALES"
-    ),
-    "DIRECCION GENERAL DE OPERACIÓN Y LOGISTICA DE PROGRAMAS",
-    "INSTITUTO HIDALGUENSE DE LA JUVENTUD",
-    "COORDINACION ADMINISTRATIVA -DIRECCION DE RECURSOS MATERIALES",
-    "COORDINACION ADMINISTRATIVA-DIRECCION DE RECURSOS HUMANOS",
-    "COORDINACION ADMINISTRATIVA-INFORMATICA",
-    (
-        "COORDINACION ADMINISTRATIVA-SUBDIRECCION DE INTEGRACION Y CONTROL DE"
-        " INFORMACION"
-    ),
-    "DIRECCION GENERAL DE SERVIDORES DEL PUEBLO",
-    "DIRECCIÓN DE RECURSOS FINANCIEROS",
-    "DIRECCION DE CONTROL Y SEGUIMINTO DE AUDITORIA",
+    "ÓRGANO INTERNO DE CONTROL",
+    "DIRECCIÓN GENERAL DE ASISTENCIA, ATENCIÓN Y PROTECCIÓN",
+    "SUBSECRETARÍA DE INCLUSIÓN Y DESARROLLO",
+    "DIRECCIÓN GENERAL DE PROSPECTIVA, PLANEACIÓN Y EVALUACIÓN DE LOS PROGRAMAS SOCIALES",
+    "DIRECCIÓN GENERAL DE OPERACIÓN Y LOGÍSTICA DE PROGRAMAS",
     "COORDINACIÓN ADMINISTRATIVA",
-    "DIRECCION GENERAL  DE ASISTENCIA, ATENCION Y PROTECCION",
-    "DIRECCIÓN DE SUBSIDIO AL SERVICIO DE VERIFICACION VEHICULAR",
-    "ORGANO INTERNO DE CONTROL",
-    "MOBILIARIO PARA PRESTAMO",
+    "SUBDIRECCIÓN DE INTEGRACIÓN Y CONTROL DE INFORMACIÓN",
+    "DIRECCIÓN DE RECURSOS FINANCIEROS",
+    "DIRECCIÓN DE RECURSOS HUMANOS",
+    "DIRECCIÓN DE CONTROL Y SEGUIMIENTO DE AUDITORÍA",
+    "SUBSECRETARÍA DE PARTICIPACIÓN SOCIAL Y FOMENTO ARTESANAL",
+    "DIRECCIÓN GENERAL DE FOMENTO ARTESANAL",
+    "SUBSECRETARÍA DE DESARROLLO SOCIAL Y HUMANO",
+    "DIRECCIÓN GENERAL DE ATENCIÓN AL MIGRANTE",
+    "DIRECCIÓN GENERAL DE INCLUSIÓN PARA LAS PERSONAS CON DISCAPACIDAD",
+    "DIRECCIÓN DE RECURSOS MATERIALES",
+    "DIRECCIÓN GENERAL DE SERVIDORES DEL PUEBLO",
+    "CONTACT CENTER",
+    "DIRECCIÓN DE SUBSIDIO AL SERVICIO DE VERIFICACIÓN VEHICULAR",
 ]
 
-# --- 1. SELECCIÓN DE BASE DE DATOS ---
-st.sidebar.header("📁 Base de Datos")
-opcion_bd = st.sidebar.selectbox(
-    "Selecciona la Base de Datos:", ["archiveros.xlsx", "SEBISOO.xlsx"]
-)
+LISTA_RESPONSABLES = [
+  "RICARDO GÓMEZ MORENO",
+"MARLEN ELVA ARISTA AMADOR",
+"JOSUÉ RAYMUNDO SÁNCHEZ ÁVALOS",
+"PAUL GIOVANNI SÁNCHEZ NIETO",
+"JUAN ALEXIS GARCÍA GARCÍA",
+"DIANA LAURA FERNÁNDEZ MONROY",
+"JORGE ALBERTO VARGAS ROMERO",
+"EMMANUEL HUERTA MONZALVO",
+"DIVANI SHAIRENE CARDOSO LARA",
+"JOSÉ ANTONIO MENDOZA MEJÍA",
+"ESPERANZA QUEZADA XAXNI",
+"DARIANA OLVERA MENDOZA",
+"SUSANA RUIZ REYES",
+"MISAEL LÓPEZ MACARIO",
+"LUZ MARÍA BECERRA HERNÁNDEZ",
+"KARINA ANAÍ HERNÁNDEZ SOTO",
+"SERGIO EDUARDO RUIZ ARRIAGA",
+"MARIBEL IBARRA CABRERA",
+"MARÍA ANDREA REYES ESCUDERO",
+"MAHALI VÁZQUEZ VEGA",
+"ERICK DAVID GARCÍA VILLAREAL",
+"IRMA GEORGINA CONTRERAS GARCÍA",
+"VERÓNICA SEQUEIRA MONZALVO",
+"ANA GABRIELA GUTIÉRREZ GAMERO",
+"LUIS ENRIQUE LÓPEZ FARIAS",
+"JUAN JAVIER JARAMILLO SÁNCHEZ",
+"SILVIA VÁZQUEZ OLVERA",
+"CLEMENCIA CORTÉS SÁNCHEZ",
+"KARLA SOBERANES SIERRA",
+"MIRNA YADIRA SUÁREZ ZARCO",
+"GUADALUPE TREJO SAN JUAN",
+"DENISSE MALDONADO ORTEGA",
+"IRMA FERNANDA ZUÑIGA VAZQUEZ",
+"CÉSAR ALEJANDRO GARCÍA CANDELARIA",
+"FRANCISCO JAVIER MUÑOZ ARCE",
+"IRIS DIANA GARCÍA ÁNGELES",
+"MIRIAM HERRERA HERNÁNDEZ",
+"ESTEFANI GÓMEZ COLÍN",
+"MARIELA BENÍTEZ BARRERA",
+"UZIEL DE JESÚS ZENIL SALINAS",
+"JUAN CARLOS ROQUE RAMÍREZ",
+"JESÚS OREYA MENDOZA",
+"ALMA ESTELA JIMÉNEZ PÉREZ",
+"YARELI BARRERA FERNÁNDEZ",
+"OSCAR ISIDRO ROLDÁN VARGAS",
+"DAVID ROBLES HERNÁNDEZ",
+"DAVID PEÑA SÁNCHEZ",
+"NORA SUSANA MACÍAS GARCÍA",
+"CELLY FLORA AGUILAR ALVAREZ",
+"MIRIAM MARGARITA LAGUNA LEÓN",
+"LUIS GERARDO ESPARZA CANALES",
+"BEATRIZ ISABEL VÁZQUEZ MARÍN",
+"MANUEL ENRIQUE ARANDA MONTERO",
+"PATRICIA HERNÁNDEZ LÓPEZ",
+"NOÉ CHÁVEZ SALINAS",
+"VÍCTOR HUGO GUERRERO HERNÁNDEZ",
+"VALENTÍN CERÓN PACHECO",
+"MARÍA GUADALUPE PORTILLO GARNICA",
+"CECILIA ARACELI DESTUNIS ---------",
+"OSCAR HERNÁNDEZ JIMÉNEZ",
+"MIGUEL ESNEYDER HERNÁNDEZ LUGO",
+"RAYMUNDO IVÁN GOVEA VILLANUEVA",
+"MA. JUDITH RAMÍREZ VALTIERRA",
+"ALEJANDRO ORDAZ HERRERA",
+"YESSICA YAZMÍN CALLEJAS VEGA",
+"GRINDELIA ESPINOSA FIGUEROA",
+"JOSÉ IVÁN MANZANO TAPIA",
+"WENDY NAYELI ESPINOSA HERNÁNDEZ",
+"ASUCENA VERGARA TÉLLEZ",
+"ALFONSO HAYYIM FLORES BARRERA",
+"EGLAIM DAMARIS ACOSTA VIDAL",
+"VICENTE MORALES ORTEGA",
+"ANA MARIA LARA CASTELLANOS",
+"RUTH TEODORO REYES",
+"ESTEFANIA RODRÍGUEZ CRUZ",
+"KARINA DOMÍNGUEZ FRANCO",
+"LUCERO PÉREZ MORALES",
+"FERNANDO CARBALLO CRUZ",
+"OMAR SAMUEL MEJÍA RODRÍGUEZ",
+"ARELI MAYA MONZALVO",
+"FERNANDO ESTRADA CRUZ",
+"RAÚL LOZANO SÁNCHEZ",
+"ARADI BADILLO CUELLAR",
+"CÉSAR ALONSO ÁNGELES TREJO",
+"KARLA MARITZA HUERTA GUARNEROS",
+"ADÁN MISSAEL HERNÁNDEZ GARRIDO",
+"MARÍN ÁNGELES ZAMORA",
+"MARÍA ELENA ARELLANO MÁRQUEZ",
+"KEVIN MARTÍN LEÓN PALACIOS",
+"ERICK ACOSTA TÉLLEZ",
+"LAURA RAMÍREZ CRUZ",
+"CÉSAR REYES LEÓN",
+"LAURA ESTHER RUIZ GÁLVEZ",
+"GRACIELA VÁZQUEZ MOLINA",
+"NORA AIDHÉ LUCIANO MARTÍNEZ",
+"FLOR NOCHEBUENA MANUEL GUTIÉRREZ",
+"PEDRO FERNANDO MARTÍNEZ CHONG",
+"ARTURO AGUILAR MARTÍNEZ",
+"DANIEL AUSTRIA ZENIL",
+"ITZIA HERNÁNDEZ UREÑA",
+"ADRIANA LABRA GÓMEZ",
+"ROSA HERNÁNDEZ RODRÍGUEZ",
+"MARÍA ORQUÍDEA HERNÁNDEZ BARRERA",
+"IVÁN CRUZ SEGURA",
+"ESMERALDA VARGAS LECHUGA",
+"ESTHER GAYOSSO JOAQUÍN",
+"MARÍA DE LOURDES SÁNCHEZ PEÑA",
+"COLUMBA ORDAZ LÓPEZ",
+"MADELINA SÁNCHEZ PEÑA",
+"KARLA LUCERO VÁZQUEZ LARA",
+"LINDA YAMYLETH MENDOZA LUNA",
+"MARIBEL ORTA MEJÍA",
+"JUAN ROBERTO LAZCANO TREJO",
+"EDGAR MISSAEL MONTOYA RUBIO",
+"LIZETH VARGAS JUÁREZ",
+"ISAURO MÁRQUEZ TREJO",
+"ALFONSO FERNÁNDEZ MORENO",
+"ELIZABETH MARTÍNEZ HERNÁNDEZ",
+"TANIA YERALDIN LARA HERNÁNDEZ",
+"MARLENE JIMÉNEZ RAMÍREZ",
+"DAENA GUADALUPE ACOSTA HERNÁNDEZ",
+"REYNA BAUTISTA GRANADOS",
+"PAOLA GUERRERO ENCISO",
+"ARIADNA RAMÍREZ HERNÁNDEZ",
+"VIRIDIANA BARRAZA CORTÉZ",
+"JULIO CÉSAR GRANADOS COLMENARES",
+"ALEJANDRO SALINAS AYOTITLA",
+"ALEJANDRA CAMACHO CORONADO",
+"CÉSAR LOZANO LÓPEZ",
+"NÉSTOR MARTÍN CASTILLO VENTURA",
+"JUAN ESPINOZA ISLAS",
+"GUILLERMO AYALA PARRA",
+"JAVIER ORTIZ NOCHEBUENA",
+"LUZ JULIANA BAUTISTA DURÁN",
+"LEOPOLDO LAGARDE GONZÁLEZ",
+"MARÍA DE LA LUZ TÉLLEZ SÁNCHEZ",
+"GRISELDA YARELI GUTIÉRREZ CANO",
+"CARLOS ABUNDIO CONTRERAS GONZÁLEZ",
+"AGUSTÍN MISAEL VELÁZQUEZ MONROY",
+"AXEL ARMANDO HUERTA GUARNEROS",
+"DANNA ODEMARIS FUENTES OLGUÍN",
+"MARICELA MARTÍNEZ HERNÁNDEZ",
+"EMMA SHARAÍ MEJÍA GARCÍA",
+"EMA ROZA ROA JIMÉNEZ",
+"ANTONIO DE JESÚS CRUZ ROMERO",
+"ANA MARÍA MARTÍNEZ RUBIO",
+"CARLOS ALBERTO HERNÁNDEZ ACOSTA",
+"ÁNGEL VELASCO ROCHA",
+"MA GUADALUPE URBANO CASTILLO",
+"MARÍA DE LOS ÁNGELES PERCASTEGUI JIMÉNEZ",
+"ROSA LETICIA MUÑOZ CHÁVEZ",
+"ELIZABETH MARGARITA NOGUEZ ROMERO",
+"MARÍA SARA ORTIZ GONZÁLEZ",
+"MINERVA OLGUÍN ÁNGELES",
+"JUAN MOISÉS GÓMEZ AISPURO",
+"ARIANA SALAS LUGO",
+"MARÍA FERNANDA GUZMÁN ESCAMILLA",
+"LIZBETH CASTRO LANDAVERDE",
+"MARTHA PATRICIA BARRAGÁN GARCÍA",
+"LAURA TRINIDAD HERNÁNDEZ DÍAZ",
+"GABRIELA LETICIA MARTÍNEZ PÉREZ",
+"VICTOR HUGO PÉREZ GUATI ROJO",
+"PERLA ALELÍ BARRERA GODÍNEZ",
+"CARLOS RODRIGO ROJAS RUIZ",
+"ANA LUISA BAÑOS CASTRO",
+"MAYTHE MONSERRAT ESCARELA PÉREZ",
+"CRISTHIAN OMAR CORDERO ESTRADA",
+"JOSÉ MANUEL NORIEGA DE LUCIO",
+"ALFONSO GUDIÑO ZAMORA",
+"SANDRA LIZBETH HERNÁNDEZ GARCÍA",
+"ADRIANA ÁVILA FLORES",
+"ARELY LÓPEZ VARGAS",
+"ANA BRISNA CERVANTES HIDALGO",
+"JULIO GIEZI HERNÁNDEZ GRAJEDA",
+"EIRENE LÓPEZ APARICIO",
+"MARY CARMEN LÓPEZ HERNÁNDEZ",
+"RAÚL URIEL OLIVARES RÍOS",
+"JUANITA CHÁVEZ PÉREZ",
+"LIZETH VIDAL CANO",
+"CARLOS CHARGOY RODRÍGUEZ",
+"VIANEY CRISTINA SOLARES MORENO",
+"SUSANA JIMÉNEZ HERNÁNDEZ",
+"FRANCISCO REYES VÁZQUEZ",
+"ABRIL HERNÁNDEZ GUERRERO",
+"LUZ MARÍA LUQUE GÓMEZ",
+"MARÍA ELENA TELLO SÁNCHEZ",
+"MISAEL GUTIÉRREZ ISLAS",
+"ERNESTO MARTÍNEZ AGUILAR",
+"GABRIELA HERNÁNDEZ BUSTOS",
+"JUAN ÁNGEL AGUILAR MENDOZA",
+"GARDENIA CRUZ ESCUDERO",
+"ROBERTO CARLOS LÓPEZ ESTRADA",
+"SARABI VALENTINA DÍAZ TÉLLEZ GIRÓN",
+"JORGE MIGUEL GARCÍA VÁZQUEZ",
+"MARIBEL MOLINA HERNÁNDEZ",
+"ABADI JOSEFINA JURADO GARNICA",
+"ERICK ESPINOSA LORENZO",
+"ROSA MARÍA PÉREZ GARCÍA",
+"KARLA PAOLA MÉNDEZ MORALES",
+"JOSÉ LUIS GONZÁLEZ MARTÍINEZ",
+"IVÁN MERA CURIEL",
+"FRANCISCA HERNÁNDEZ MONROY",
+"SERGIO YAMIR BALDERAS BAUTISTA",
+"LILIANA YAZMIN FRANCO CASTRO",
+"XIMENA NAVA ESCAMILLA",
+"MANUEL ALEJANDRO HERNÁNDEZ RIVERA",
+"SERGIO VERGARA FLORES",
+"SCARLETT OLGUÍN RODRÍGUEZ",
+"AURELIA PATRICIA CASTAÑEDA MONTER",
+"DANIELA PELCASTRE HERNÁNDEZ",
+"ÁNGEL VLADIMIR SÁNCHEZ GARCÍA",
+"PEDRO FUENTES AGUILAR",
+"CARLOS ALEJANDRO SOTO GÓMEZ",
+"MARÍA DE LA LUZ ESPINOSA HERNÁNDEZ",
+"JUANA GUADALUPE HERNÁNDEZ ESPITIA",
+"SAÚL PÉREZ LÓPEZ",
+]
 
-# Creamos las dos pestañas principales solicitadas
+LISTA_AVALA = [
+    "ING. ARIANA SALAS LUGO",
+    "ING. DAVID ROBLES HERNANDEZ",
+    "ING. JUAN ANGEL AGULAR MENDOZA",
+    "L.A.P. JORGE MIGUEL GARCIA VAZQUEZ",
+    "LD. LUIS ENRIQUE LOPEZ FARIAS",
+    "LIC. ANA KAREN CERON MARTINEZ",
+    "LIC. ARELI MAYA MONZALVO",
+    "LIC. JULIO CESAR GONZALEZ GARCIA",
+    "LIC. KARLA SOBERANES SIERRA",
+    "LIC. LIZETH VIDAL CANO",
+    "LIC. LUIS GERARDO MALDONADO REYES",
+    "LIC. LUZ MARIA LUQUE GOMEZ",
+    "LIC. MA. GUADALUPE PINEDA GONZALEZ",
+    "LIC. MANUEL ALEJANDRO HERNANDEZ RIVERA",
+    "LIC. MANUEL ENRIQUE ARANDA MONTERO",
+    "LIC. MARIELA BENITEZ BARRERA",
+    "LIC. MARLEN ELVA ARISTA AMADOR",
+    "LIC. NORA AIDHE LUCIANO MARTINEZ",
+    "LIC. VICTOR HUGO PEREZ GUATI ROJO",
+    "MTRA. ANA BRISNA CERVANTES HIDALGO",
+    "MTRA. ROSA LETICIA MUÑOZ CHAVEZ",
+    "MTRO. ALEJANDRO SALINAS AYOTITLA",
+    "MTRO. ALFONSO HAYYIM FLORES BARRERA",
+    "MTRO. JUAN ROBERTO LAZCANO TREJO",
+    "MTRO. RICARDO GOMEZ MORENO",
+]
+
+# Base de datos única fija y exclusiva
+opcion_bd = "SEBISOO.xlsx"
+
+# Pestañas principales
 tab_original, tab_edicion = st.tabs(
     ["📄 Vista Original Completa (Excel)", "✏️ Panel de Control y Edición"]
 )
@@ -65,7 +303,7 @@ with tab_original:
   st.subheader(f"Vista íntegra del archivo original: {opcion_bd}")
   st.markdown(
       "Este apartado muestra el archivo tal como se encuentra en su origen,"
-      " conservando su estructura completa y portada original."
+      " conservando su estructura completa, portada y formato exacto."
   )
   if os.path.exists(opcion_bd):
     try:
@@ -74,8 +312,7 @@ with tab_original:
           opcion_bd, sheet_name=xls.sheet_names[0], header=None, dtype=str
       )
       df_raw_view = df_raw_view.fillna("")
-      if "SEBISOO" in opcion_bd:
-        df_raw_view = df_raw_view.iloc[:, :14]
+      df_raw_view = df_raw_view.iloc[:, :14]
       st.dataframe(
           df_raw_view, use_container_width=True, height=650, hide_index=True
       )
@@ -89,41 +326,37 @@ with tab_original:
 # ==========================================
 with tab_edicion:
 
-  # Carga inteligente y flexible de archivos
   @st.cache_data(ttl=1)
   def cargar_datos(archivo):
     if os.path.exists(archivo):
       try:
-        if "SEBISOO" in archivo:
-          xls = pd.ExcelFile(archivo)
-          primera_pestana = xls.sheet_names[0]
-          df = pd.read_excel(archivo, sheet_name=primera_pestana, header=29)
+        xls = pd.ExcelFile(archivo)
+        primera_pestana = xls.sheet_names[0]
+        # dtype=str previene que los guiones en números de inventario sufran alteraciones
+        df = pd.read_excel(
+            archivo, sheet_name=primera_pestana, header=29, dtype=str
+        )
 
-          df = df.dropna(
-              subset=[col for col in df.columns if "Inventario" in str(col)]
-          ).reset_index(drop=True)
+        df = df.dropna(
+            subset=[col for col in df.columns if "Inventario" in str(col)]
+        ).reset_index(drop=True)
 
-          if "Nombre " in df.columns:
-            df.rename(columns={"Nombre ": "DESCRIPCION"}, inplace=True)
-          if "Marc " in df.columns:
-            df.rename(columns={"Marc ": "MARCA"}, inplace=True)
-          if "Modelo " in df.columns:
-            df.rename(columns={"Modelo ": "MODELO"}, inplace=True)
-          if "Serie " in df.columns:
-            df.rename(columns={"Serie ": "SERIE"}, inplace=True)
-          if "Descripción" in df.columns:
-            df.rename(columns={"Descripción": "CARACTERISTICAS"}, inplace=True)
+        if "Nombre " in df.columns:
+          df.rename(columns={"Nombre ": "DESCRIPCION"}, inplace=True)
+        if "Marc " in df.columns:
+          df.rename(columns={"Marc ": "MARCA"}, inplace=True)
+        if "Modelo " in df.columns:
+          df.rename(columns={"Modelo ": "MODELO"}, inplace=True)
+        if "Serie " in df.columns:
+          df.rename(columns={"Serie ": "SERIE"}, inplace=True)
+        if "Descripción" in df.columns:
+          df.rename(columns={"Descripción": "CARACTERISTICAS"}, inplace=True)
 
-          if "AREA" not in df.columns:
-            df["AREA"] = "DIRECCION DE RECURSOS MATERIALES"
-          if "NOMBRE DEL USUARIO" not in df.columns:
-            df["NOMBRE DEL USUARIO"] = ""
-          return df
-        else:
-          df = pd.read_excel(archivo)
-          if "NOMBRE DEL USUARIO" not in df.columns:
-            df["NOMBRE DEL USUARIO"] = ""
-          return df
+        if "AREA" not in df.columns:
+          df["AREA"] = "DIRECCIÓN DE RECURSOS MATERIALES"
+        if "NOMBRE DEL USUARIO" not in df.columns:
+          df["NOMBRE DEL USUARIO"] = ""
+        return df.fillna("")
       except Exception as e:
         st.error(f"Error al leer el archivo {archivo}: {e}")
         return pd.DataFrame()
@@ -140,7 +373,7 @@ with tab_edicion:
         break
 
     if not columna_area:
-      df["AREA"] = "DIRECCION DE RECURSOS MATERIALES"
+      df["AREA"] = "DIRECCIÓN DE RECURSOS MATERIALES"
       columna_area = "AREA"
 
     areas_en_archivo = (
@@ -182,11 +415,11 @@ with tab_edicion:
               "Características", "REFORZADA CON ASIENTO Y RESPALDO"
           )
         with c3:
-          nuevo_usuario = st.text_input(
-              "Nombre del Servidor Público / Usuario", ""
+          nuevo_usuario = st.selectbox(
+              "Nombre del Servidor Público / Usuario", LISTA_RESPONSABLES
           )
           nueva_area_reg = st.selectbox("Área de Adscripción", todas_las_areas)
-          nueva_obs = st.text_input("Observaciones", "")
+          nuevo_obs = st.text_input("Observaciones", "")
 
         btn_agregar = st.form_submit_button("Guardar Bien en la Base de Datos")
 
@@ -196,20 +429,22 @@ with tab_edicion:
                   "INVENTARIO"
                   if "INVENTARIO" in df.columns
                   else "No. Inventario"
-              ): nuevo_inv,
+              ): str(nuevo_inv),
               (
                   "DESCRIPCION" if "DESCRIPCION" in df.columns else "Nombre "
-              ): nuevo_desc,
-              "MARCA" if "MARCA" in df.columns else "Marc ": nuevo_marca,
-              "MODELO" if "MODELO" in df.columns else "Modelo ": nuevo_modelo,
-              "SERIE" if "SERIE" in df.columns else "Serie ": nuevo_serie,
+              ): str(nuevo_desc),
+              "MARCA" if "MARCA" in df.columns else "Marc ": str(nuevo_marca),
+              "MODELO" if "MODELO" in df.columns else "Modelo ": str(
+                  nuevo_modelo
+              ),
+              "SERIE" if "SERIE" in df.columns else "Serie ": str(nuevo_serie),
               (
                   "CARACTERISTICAS"
                   if "CARACTERISTICAS" in df.columns
                   else "Descripción"
-              ): nuevo_carac,
-              "NOMBRE DEL USUARIO": nuevo_usuario,
-              columna_area: nueva_area_reg,
+              ): str(nuevo_carac),
+              "NOMBRE DEL USUARIO": str(nuevo_usuario),
+              columna_area: str(nueva_area_reg),
           }
           df = pd.concat(
               [df, pd.DataFrame([nuevo_registro])], ignore_index=True
@@ -243,6 +478,15 @@ with tab_edicion:
     st.markdown("---")
     st.subheader("📄 Generación de Resguardo PDF Exclusivo de esta Área")
 
+    col_f1, col_f2 = st.columns(2)
+    with col_f1:
+      firmante_responsable = st.selectbox(
+          "Selecciona la Firma del Servidor Público Responsable:",
+          LISTA_RESPONSABLES,
+      )
+    with col_f2:
+      firmante_avala = st.selectbox("Selecciona quién AVALA:", LISTA_AVALA)
+
     if st.button("📥 Generar PDF de Resguardo (Solo esta Área)"):
       if df_editado.empty:
         st.warning(
@@ -259,10 +503,9 @@ with tab_edicion:
           pdf.add_page()
           pdf.set_auto_page_break(auto=True, margin=10)
 
-          # --- LOGOTIPO INSTITUCIONAL ---
+          # --- LOGOTIPO INSTITUCIONAL (Más grande, con ancho de 62mm) ---
           if os.path.exists("BIENESTAR8.png"):
-            # Coloca la imagen en la parte superior izquierda (x=10, y=8, ancho=45mm)
-            pdf.image("BIENESTAR8.png", x=10, y=8, w=45)
+            pdf.image("BIENESTAR8.png", x=10, y=8, w=62)
 
           # Encabezado institucional
           pdf.set_font("Arial", "B", 10)
@@ -280,7 +523,7 @@ with tab_edicion:
           pdf.cell(0, 4, "RESGUARDO INDIVIDUAL INTERNO", 0, 1, "C")
           pdf.ln(5)
 
-          # Datos de Área y Fecha
+          # Datos de Área y Fecha (Área completa sin abreviaciones)
           fecha_hoy = datetime.now().strftime("%d/%m/%Y")
           pdf.set_font("Arial", "B", 8)
           pdf.cell(15, 6, "AREA:", 0, 0, "L")
