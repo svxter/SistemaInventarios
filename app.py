@@ -231,7 +231,7 @@ LISTA_RESPONSABLES = [
     "MISAEL GUTIÉRREZ ISLAS",
     "ERNESTO MARTÍNEZ AGUILAR",
     "GABRIELA HERNÁNDEZ BUSTOS",
-    "JUAN ÁNGEL AGUILAR MENDOZA",
+    "JUAN ÁNGEL AGULAR MENDOZA",
     "GARDENIA CRUZ ESCUDERO",
     "ROBERTO CARLOS LÓPEZ ESTRADA",
     "SARABI VALENTINA DÍAZ TÉLLEZ GIRÓN",
@@ -363,7 +363,7 @@ with tab_edicion:
     st.sidebar.header("🔍 Filtros de Área")
     area_seleccionada = st.sidebar.selectbox("Selecciona el Área para el Resguardo:", ["Todas"] + todas_las_areas)
 
-    # Filtro flexible para evitar que no aparezcan registros por variaciones de espacios o mayúsculas
+    # Detección ultra flexible del área
     if area_seleccionada != "Todas":
       df_filtrado = df[df[columna_area].astype(str).str.strip().str.upper() == area_seleccionada.strip().upper()].copy()
     else:
@@ -419,7 +419,7 @@ with tab_edicion:
       except Exception as e:
         st.error(f"Error al guardar: {e}")
 
-    # --- GENERACIÓN DE PDF SIN AVISO BLOQUEADOR ---
+    # --- GENERACIÓN DE PDF ---
     st.markdown("---")
     st.subheader("📄 Generación de Resguardo PDF Exclusivo de esta Área")
     col_f1, col_f2 = st.columns(2)
