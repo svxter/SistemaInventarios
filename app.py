@@ -231,7 +231,7 @@ LISTA_RESPONSABLES = [
     "MISAEL GUTIÉRREZ ISLAS",
     "ERNESTO MARTÍNEZ AGUILAR",
     "GABRIELA HERNÁNDEZ BUSTOS",
-    "JUAN ÁNGEL AGULAR MENDOZA",
+    "JUAN ÁNGEL AGUILAR MENDOZA",
     "GARDENIA CRUZ ESCUDERO",
     "ROBERTO CARLOS LÓPEZ ESTRADA",
     "SARABI VALENTINA DÍAZ TÉLLEZ GIRÓN",
@@ -363,7 +363,6 @@ with tab_edicion:
     st.sidebar.header("🔍 Filtros de Área")
     area_seleccionada = st.sidebar.selectbox("Selecciona el Área para el Resguardo:", ["Todas"] + todas_las_areas)
 
-    # Detección ultra flexible del área
     if area_seleccionada != "Todas":
       df_filtrado = df[df[columna_area].astype(str).str.strip().str.upper() == area_seleccionada.strip().upper()].copy()
     else:
@@ -500,11 +499,17 @@ with tab_edicion:
 
             pdf.set_xy(x_start, y_start + row_height)
 
+          # --- NOTA LEGAL DENTRO DE UN CUADRO ---
           pdf.ln(4)
-          pdf.set_font("Arial", "", 5)
+          pdf.set_font("Arial", "", 4.8)
           nota_legal = "CON FUNDAMENTO EN LO DISPUESTO POR LOS ARTÍCULOS 149 V EN FRACCIÓN II DE LA CONSTITUCIÓN POLÍTICA DEL ESTADO DE HIDALGO; 7 FRACCIÓN III DE LA LEY GENERAL DE RESPONSABILIDADES ADMINISTRATIVAS; 2 PÁRRAFO ÚNICO DE LA LEY ORGÁNICA DE LA ADMINISTRACIÓN PÚBLICA DEL ESTADO DE HIDALGO; 4 FRACCIÓN VI, 6 FRACCIÓN IV Y 45 SÉPTIMO Y OCTAVO PÁRRAFO DE LAS NORMAS GENERALES PARA ADMINISTRAR Y CONTROLAR LOS BIENES MUEBLES... RECIBÍ DE COMPLETA CONFORMIDAD LOS BIENES MUEBLES ANTES LISTADOS."
-          pdf.multi_cell(0, 3, nota_legal, 0, "J")
-          pdf.ln(8)
+          
+          y_nota = pdf.get_y()
+          # Dibujamos el cuadro del texto legal adaptado al ancho total (257mm)
+          pdf.rect(10, y_nota, 257, 12)
+          pdf.set_xy(12, y_nota + 1.5)
+          pdf.multi_cell(253, 2.8, nota_legal, 0, "J")
+          pdf.ln(5)
 
           y_firma = pdf.get_y()
           pdf.rect(10, y_firma, 85, 20)
