@@ -43,221 +43,221 @@ AREAS_MAESTRAS = [
 
 LISTA_RESPONSABLES = [
     "RICARDO GÓMEZ MORENO",
-"MARLEN ELVA ARISTA AMADOR",
-"JOSUÉ RAYMUNDO SÁNCHEZ ÁVALOS",
-"PAUL GIOVANNI SÁNCHEZ NIETO",
-"JUAN ALEXIS GARCÍA GARCÍA",
-"DIANA LAURA FERNÁNDEZ MONROY",
-"JORGE ALBERTO VARGAS ROMERO",
-"EMMANUEL HUERTA MONZALVO",
-"DIVANI SHAIRENE CARDOSO LARA",
-"JOSÉ ANTONIO MENDOZA MEJÍA",
-"ESPERANZA QUEZADA XAXNI",
-"DARIANA OLVERA MENDOZA",
-"SUSANA RUIZ REYES",
-"MISAEL LÓPEZ MACARIO",
-"LUZ MARÍA BECERRA HERNÁNDEZ",
-"KARINA ANAÍ HERNÁNDEZ SOTO",
-"SERGIO EDUARDO RUIZ ARRIAGA",
-"MARIBEL IBARRA CABRERA",
-"MARÍA ANDREA REYES ESCUDERO",
-"MAHALI VÁZQUEZ VEGA",
-"ERICK DAVID GARCÍA VILLAREAL",
-"IRMA GEORGINA CONTRERAS GARCÍA",
-"VERÓNICA SEQUEIRA MONZALVO",
-"ANA GABRIELA GUTIÉRREZ GAMERO",
-"LUIS ENRIQUE LÓPEZ FARIAS",
-"JUAN JAVIER JARAMILLO SÁNCHEZ",
-"SILVIA VÁZQUEZ OLVERA",
-"CLEMENCIA CORTÉS SÁNCHEZ",
-"KARLA SOBERANES SIERRA",
-"MIRNA YADIRA SUÁREZ ZARCO",
-"GUADALUPE TREJO SAN JUAN",
-"DENISSE MALDONADO ORTEGA",
-"IRMA FERNANDA ZUÑIGA VAZQUEZ",
-"CÉSAR ALEJANDRO GARCÍA CANDELARIA",
-"FRANCISCO JAVIER MUÑOZ ARCE",
-"IRIS DIANA GARCÍA ÁNGELES",
-"MIRIAM HERRERA HERNÁNDEZ",
-"ESTEFANI GÓMEZ COLÍN",
-"MARIELA BENÍTEZ BARRERA",
-"UZIEL DE JESÚS ZENIL SALINAS",
-"JUAN CARLOS ROQUE RAMÍREZ",
-"JESÚS OREYA MENDOZA",
-"ALMA ESTELA JIMÉNEZ PÉREZ",
-"YARELI BARRERA FERNÁNDEZ",
-"OSCAR ISIDRO ROLDÁN VARGAS",
-"DAVID ROBLES HERNÁNDEZ",
-"DAVID PEÑA SÁNCHEZ",
-"NORA SUSANA MACÍAS GARCÍA",
-"CELLY FLORA AGUILAR ALVAREZ",
-"MIRIAM MARGARITA LAGUNA LEÓN",
-"LUIS GERARDO ESPARZA CANALES",
-"BEATRIZ ISABEL VÁZQUEZ MARÍN",
-"MANUEL ENRIQUE ARANDA MONTERO",
-"PATRICIA HERNÁNDEZ LÓPEZ",
-"NOÉ CHÁVEZ SALINAS",
-"VÍCTOR HUGO GUERRERO HERNÁNDEZ",
-"VALENTÍN CERÓN PACHECO",
-"MARÍA GUADALUPE PORTILLO GARNICA",
-"CECILIA ARACELI DESTUNIS ---------",
-"OSCAR HERNÁNDEZ JIMÉNEZ",
-"MIGUEL ESNEYDER HERNÁNDEZ LUGO",
-"RAYMUNDO IVÁN GOVEA VILLANUEVA",
-"MA. JUDITH RAMÍREZ VALTIERRA",
-"ALEJANDRO ORDAZ HERRERA",
-"YESSICA YAZMÍN CALLEJAS VEGA",
-"GRINDELIA ESPINOSA FIGUEROA",
-"JOSÉ IVÁN MANZANO TAPIA",
-"WENDY NAYELI ESPINOSA HERNÁNDEZ",
-"ASUCENA VERGARA TÉLLEZ",
-"ALFONSO HAYYIM FLORES BARRERA",
-"EGLAIM DAMARIS ACOSTA VIDAL",
-"VICENTE MORALES ORTEGA",
-"ANA MARIA LARA CASTELLANOS",
-"RUTH TEODORO REYES",
-"ESTEFANIA RODRÍGUEZ CRUZ",
-"KARINA DOMÍNGUEZ FRANCO",
-"LUCERO PÉREZ MORALES",
-"FERNANDO CARBALLO CRUZ",
-"OMAR SAMUEL MEJÍA RODRÍGUEZ",
-"ARELI MAYA MONZALVO",
-"FERNANDO ESTRADA CRUZ",
-"RAÚL LOZANO SÁNCHEZ",
-"ARADI BADILLO CUELLAR",
-"CÉSAR ALONSO ÁNGELES TREJO",
-"KARLA MARITZA HUERTA GUARNEROS",
-"ADÁN MISSAEL HERNÁNDEZ GARRIDO",
-"MARÍN ÁNGELES ZAMORA",
-"MARÍA ELENA ARELLANO MÁRQUEZ",
-"KEVIN MARTÍN LEÓN PALACIOS",
-"ERICK ACOSTA TÉLLEZ",
-"LAURA RAMÍREZ CRUZ",
-"CÉSAR REYES LEÓN",
-"LAURA ESTHER RUIZ GÁLVEZ",
-"GRACIELA VÁZQUEZ MOLINA",
-"NORA AIDHÉ LUCIANO MARTÍNEZ",
-"FLOR NOCHEBUENA MANUEL GUTIÉRREZ",
-"PEDRO FERNANDO MARTÍNEZ CHONG",
-"ARTURO AGUILAR MARTÍNEZ",
-"DANIEL AUSTRIA ZENIL",
-"ITZIA HERNÁNDEZ UREÑA",
-"ADRIANA LABRA GÓMEZ",
-"ROSA HERNÁNDEZ RODRÍGUEZ",
-"MARÍA ORQUÍDEA HERNÁNDEZ BARRERA",
-"IVÁN CRUZ SEGURA",
-"ESMERALDA VARGAS LECHUGA",
-"ESTHER GAYOSSO JOAQUÍN",
-"MARÍA DE LOURDES SÁNCHEZ PEÑA",
-"COLUMBA ORDAZ LÓPEZ",
-"MADELINA SÁNCHEZ PEÑA",
-"KARLA LUCERO VÁZQUEZ LARA",
-"LINDA YAMYLETH MENDOZA LUNA",
-"MARIBEL ORTA MEJÍA",
-"JUAN ROBERTO LAZCANO TREJO",
-"EDGAR MISSAEL MONTOYA RUBIO",
-"LIZETH VARGAS JUÁREZ",
-"ISAURO MÁRQUEZ TREJO",
-"ALFONSO FERNÁNDEZ MORENO",
-"ELIZABETH MARTÍNEZ HERNÁNDEZ",
-"TANIA YERALDIN LARA HERNÁNDEZ",
-"MARLENE JIMÉNEZ RAMÍREZ",
-"DAENA GUADALUPE ACOSTA HERNÁNDEZ",
-"REYNA BAUTISTA GRANADOS",
-"PAOLA GUERRERO ENCISO",
-"ARIADNA RAMÍREZ HERNÁNDEZ",
-"VIRIDIANA BARRAZA CORTÉZ",
-"JULIO CÉSAR GRANADOS COLMENARES",
-"ALEJANDRO SALINAS AYOTITLA",
-"ALEJANDRA CAMACHO CORONADO",
-"CÉSAR LOZANO LÓPEZ",
-"NÉSTOR MARTÍN CASTILLO VENTURA",
-"JUAN ESPINOZA ISLAS",
-"GUILLERMO AYALA PARRA",
-"JAVIER ORTIZ NOCHEBUENA",
-"LUZ JULIANA BAUTISTA DURÁN",
-"LEOPOLDO LAGARDE GONZÁLEZ",
-"MARÍA DE LA LUZ TÉLLEZ SÁNCHEZ",
-"GRISELDA YARELI GUTIÉRREZ CANO",
-"CARLOS ABUNDIO CONTRERAS GONZÁLEZ",
-"AGUSTÍN MISAEL VELÁZQUEZ MONROY",
-"AXEL ARMANDO HUERTA GUARNEROS",
-"DANNA ODEMARIS FUENTES OLGUÍN",
-"MARICELA MARTÍNEZ HERNÁNDEZ",
-"EMMA SHARAÍ MEJÍA GARCÍA",
-"EMA ROZA ROA JIMÉNEZ",
-"ANTONIO DE JESÚS CRUZ ROMERO",
-"ANA MARÍA MARTÍNEZ RUBIO",
-"CARLOS ALBERTO HERNÁNDEZ ACOSTA",
-"ÁNGEL VELASCO ROCHA",
-"MA GUADALUPE URBANO CASTILLO",
-"MARÍA DE LOS ÁNGELES PERCASTEGUI JIMÉNEZ",
-"ROSA LETICIA MUÑOZ CHÁVEZ",
-"ELIZABETH MARGARITA NOGUEZ ROMERO",
-"MARÍA SARA ORTIZ GONZÁLEZ",
-"MINERVA OLGUÍN ÁNGELES",
-"JUAN MOISÉS GÓMEZ AISPURO",
-"ARIANA SALAS LUGO",
-"MARÍA FERNANDA GUZMÁN ESCAMILLA",
-"LIZBETH CASTRO LANDAVERDE",
-"MARTHA PATRICIA BARRAGÁN GARCÍA",
-"LAURA TRINIDAD HERNÁNDEZ DÍAZ",
-"GABRIELA LETICIA MARTÍNEZ PÉREZ",
-"VICTOR HUGO PÉREZ GUATI ROJO",
-"PERLA ALELÍ BARRERA GODÍNEZ",
-"CARLOS RODRIGO ROJAS RUIZ",
-"ANA LUISA BAÑOS CASTRO",
-"MAYTHE MONSERRAT ESCARELA PÉREZ",
-"CRISTHIAN OMAR CORDERO ESTRADA",
-"JOSÉ MANUEL NORIEGA DE LUCIO",
-"ALFONSO GUDIÑO ZAMORA",
-"SANDRA LIZBETH HERNÁNDEZ GARCÍA",
-"ADRIANA ÁVILA FLORES",
-"ARELY LÓPEZ VARGAS",
-"ANA BRISNA CERVANTES HIDALGO",
-"JULIO GIEZI HERNÁNDEZ GRAJEDA",
-"EIRENE LÓPEZ APARICIO",
-"MARY CARMEN LÓPEZ HERNÁNDEZ",
-"RAÚL URIEL OLIVARES RÍOS",
-"JUANITA CHÁVEZ PÉREZ",
-"LIZETH VIDAL CANO",
-"CARLOS CHARGOY RODRÍGUEZ",
-"VIANEY CRISTINA SOLARES MORENO",
-"SUSANA JIMÉNEZ HERNÁNDEZ",
-"FRANCISCO REYES VÁZQUEZ",
-"ABRIL HERNÁNDEZ GUERRERO",
-"LUZ MARÍA LUQUE GÓMEZ",
-"MARÍA ELENA TELLO SÁNCHEZ",
-"MISAEL GUTIÉRREZ ISLAS",
-"ERNESTO MARTÍNEZ AGUILAR",
-"GABRIELA HERNÁNDEZ BUSTOS",
-"JUAN ÁNGEL AGUILAR MENDOZA",
-"GARDENIA CRUZ ESCUDERO",
-"ROBERTO CARLOS LÓPEZ ESTRADA",
-"SARABI VALENTINA DÍAZ TÉLLEZ GIRÓN",
-"JORGE MIGUEL GARCÍA VÁZQUEZ",
-"MARIBEL MOLINA HERNÁNDEZ",
-"ABADI JOSEFINA JURADO GARNICA",
-"ERICK ESPINOSA LORENZO",
-"ROSA MARÍA PÉREZ GARCÍA",
-"KARLA PAOLA MÉNDEZ MORALES",
-"JOSÉ LUIS GONZÁLEZ MARTÍINEZ",
-"IVÁN MERA CURIEL",
-"FRANCISCA HERNÁNDEZ MONROY",
-"SERGIO YAMIR BALDERAS BAUTISTA",
-"LILIANA YAZMIN FRANCO CASTRO",
-"XIMENA NAVA ESCAMILLA",
-"MANUEL ALEJANDRO HERNÁNDEZ RIVERA",
-"SERGIO VERGARA FLORES",
-"SCARLETT OLGUÍN RODRÍGUEZ",
-"AURELIA PATRICIA CASTAÑEDA MONTER",
-"DANIELA PELCASTRE HERNÁNDEZ",
-"ÁNGEL VLADIMIR SÁNCHEZ GARCÍA",
-"PEDRO FUENTES AGUILAR",
-"CARLOS ALEJANDRO SOTO GÓMEZ",
-"MARÍA DE LA LUZ ESPINOSA HERNÁNDEZ",
-"JUANA GUADALUPE HERNÁNDEZ ESPITIA",
-"SAÚL PÉREZ LÓPEZ",
+    "MARLEN ELVA ARISTA AMADOR",
+    "JOSUÉ RAYMUNDO SÁNCHEZ ÁVALOS",
+    "PAUL GIOVANNI SÁNCHEZ NIETO",
+    "JUAN ALEXIS GARCÍA GARCÍA",
+    "DIANA LAURA FERNÁNDEZ MONROY",
+    "JORGE ALBERTO VARGAS ROMERO",
+    "EMMANUEL HUERTA MONZALVO",
+    "DIVANI SHAIRENE CARDOSO LARA",
+    "JOSÉ ANTONIO MENDOZA MEJÍA",
+    "ESPERANZA QUEZADA XAXNI",
+    "DARIANA OLVERA MENDOZA",
+    "SUSANA RUIZ REYES",
+    "MISAEL LÓPEZ MACARIO",
+    "LUZ MARÍA BECERRA HERNÁNDEZ",
+    "KARINA ANAÍ HERNÁNDEZ SOTO",
+    "SERGIO EDUARDO RUIZ ARRIAGA",
+    "MARIBEL IBARRA CABRERA",
+    "MARÍA ANDREA REYES ESCUDERO",
+    "MAHALI VÁZQUEZ VEGA",
+    "ERICK DAVID GARCÍA VILLAREAL",
+    "IRMA GEORGINA CONTRERAS GARCÍA",
+    "VERÓNICA SEQUEIRA MONZALVO",
+    "ANA GABRIELA GUTIÉRREZ GAMERO",
+    "LUIS ENRIQUE LÓPEZ FARIAS",
+    "JUAN JAVIER JARAMILLO SÁNCHEZ",
+    "SILVIA VÁZQUEZ OLVERA",
+    "CLEMENCIA CORTÉS SÁNCHEZ",
+    "KARLA SOBERANES SIERRA",
+    "MIRNA YADIRA SUÁREZ ZARCO",
+    "GUADALUPE TREJO SAN JUAN",
+    "DENISSE MALDONADO ORTEGA",
+    "IRMA FERNANDA ZUÑIGA VAZQUEZ",
+    "CÉSAR ALEJANDRO GARCÍA CANDELARIA",
+    "FRANCISCO JAVIER MUÑOZ ARCE",
+    "IRIS DIANA GARCÍA ÁNGELES",
+    "MIRIAM HERRERA HERNÁNDEZ",
+    "ESTEFANI GÓMEZ COLÍN",
+    "MARIELA BENÍTEZ BARRERA",
+    "UZIEL DE JESÚS ZENIL SALINAS",
+    "JUAN CARLOS ROQUE RAMÍREZ",
+    "JESÚS OREYA MENDOZA",
+    "ALMA ESTELA JIMÉNEZ PÉREZ",
+    "YARELI BARRERA FERNÁNDEZ",
+    "OSCAR ISIDRO ROLDÁN VARGAS",
+    "DAVID ROBLES HERNÁNDEZ",
+    "DAVID PEÑA SÁNCHEZ",
+    "NORA SUSANA MACÍAS GARCÍA",
+    "CELLY FLORA AGUILAR ALVAREZ",
+    "MIRIAM MARGARITA LAGUNA LEÓN",
+    "LUIS GERARDO ESPARZA CANALES",
+    "BEATRIZ ISABEL VÁZQUEZ MARÍN",
+    "MANUEL ENRIQUE ARANDA MONTERO",
+    "PATRICIA HERNÁNDEZ LÓPEZ",
+    "NOÉ CHÁVEZ SALINAS",
+    "VÍCTOR HUGO GUERRERO HERNÁNDEZ",
+    "VALENTÍN CERÓN PACHECO",
+    "MARÍA GUADALUPE PORTILLO GARNICA",
+    "CECILIA ARACELI DESTUNIS ---------",
+    "OSCAR HERNÁNDEZ JIMÉNEZ",
+    "MIGUEL ESNEYDER HERNÁNDEZ LUGO",
+    "RAYMUNDO IVÁN GOVEA VILLANUEVA",
+    "MA. JUDITH RAMÍREZ VALTIERRA",
+    "ALEJANDRO ORDAZ HERRERA",
+    "YESSICA YAZMÍN CALLEJAS VEGA",
+    "GRINDELIA ESPINOSA FIGUEROA",
+    "JOSÉ IVÁN MANZANO TAPIA",
+    "WENDY NAYELI ESPINOSA HERNÁNDEZ",
+    "ASUCENA VERGARA TÉLLEZ",
+    "ALFONSO HAYYIM FLORES BARRERA",
+    "EGLAIM DAMARIS ACOSTA VIDAL",
+    "VICENTE MORALES ORTEGA",
+    "ANA MARIA LARA CASTELLANOS",
+    "RUTH TEODORO REYES",
+    "ESTEFANIA RODRÍGUEZ CRUZ",
+    "KARINA DOMÍNGUEZ FRANCO",
+    "LUCERO PÉREZ MORALES",
+    "FERNANDO CARBALLO CRUZ",
+    "OMAR SAMUEL MEJÍA RODRÍGUEZ",
+    "ARELI MAYA MONZALVO",
+    "FERNANDO ESTRADA CRUZ",
+    "RAÚL LOZANO SÁNCHEZ",
+    "ARADI BADILLO CUELLAR",
+    "CÉSAR ALONSO ÁNGELES TREJO",
+    "KARLA MARITZA HUERTA GUARNEROS",
+    "ADÁN MISSAEL HERNÁNDEZ GARRIDO",
+    "MARÍN ÁNGELES ZAMORA",
+    "MARÍA ELENA ARELLANO MÁRQUEZ",
+    "KEVIN MARTÍN LEÓN PALACIOS",
+    "ERICK ACOSTA TÉLLEZ",
+    "LAURA RAMÍREZ CRUZ",
+    "CÉSAR REYES LEÓN",
+    "LAURA ESTHER RUIZ GÁLVEZ",
+    "GRACIELA VÁZQUEZ MOLINA",
+    "NORA AIDHÉ LUCIANO MARTÍNEZ",
+    "FLOR NOCHEBUENA MANUEL GUTIÉRREZ",
+    "PEDRO FERNANDO MARTÍNEZ CHONG",
+    "ARTURO AGUILAR MARTÍNEZ",
+    "DANIEL AUSTRIA ZENIL",
+    "ITZIA HERNÁNDEZ UREÑA",
+    "ADRIANA LABRA GÓMEZ",
+    "ROSA HERNÁNDEZ RODRÍGUEZ",
+    "MARÍA ORQUÍDEA HERNÁNDEZ BARRERA",
+    "IVÁN CRUZ SEGURA",
+    "ESMERALDA VARGAS LECHUGA",
+    "ESTHER GAYOSSO JOAQUÍN",
+    "MARÍA DE LOURDES SÁNCHEZ PEÑA",
+    "COLUMBA ORDAZ LÓPEZ",
+    "MADELINA SÁNCHEZ PEÑA",
+    "KARLA LUCERO VÁZQUEZ LARA",
+    "LINDA YAMYLETH MENDOZA LUNA",
+    "MARIBEL ORTA MEJÍA",
+    "JUAN ROBERTO LAZCANO TREJO",
+    "EDGAR MISSAEL MONTOYA RUBIO",
+    "LIZETH VARGAS JUÁREZ",
+    "ISAURO MÁRQUEZ TREJO",
+    "ALFONSO FERNÁNDEZ MORENO",
+    "ELIZABETH MARTÍNEZ HERNÁNDEZ",
+    "TANIA YERALDIN LARA HERNÁNDEZ",
+    "MARLENE JIMÉNEZ RAMÍREZ",
+    "DAENA GUADALUPE ACOSTA HERNÁNDEZ",
+    "REYNA BAUTISTA GRANADOS",
+    "PAOLA GUERRERO ENCISO",
+    "ARIADNA RAMÍREZ HERNÁNDEZ",
+    "VIRIDIANA BARRAZA CORTÉZ",
+    "JULIO CÉSAR GRANADOS COLMENARES",
+    "ALEJANDRO SALINAS AYOTITLA",
+    "ALEJANDRA CAMACHO CORONADO",
+    "CÉSAR LOZANO LÓPEZ",
+    "NÉSTOR MARTÍN CASTILLO VENTURA",
+    "JUAN ESPINOZA ISLAS",
+    "GUILLERMO AYALA PARRA",
+    "JAVIER ORTIZ NOCHEBUENA",
+    "LUZ JULIANA BAUTISTA DURÁN",
+    "LEOPOLDO LAGARDE GONZÁLEZ",
+    "MARÍA DE LA LUZ TÉLLEZ SÁNCHEZ",
+    "GRISELDA YARELI GUTIÉRREZ CANO",
+    "CARLOS ABUNDIO CONTRERAS GONZÁLEZ",
+    "AGUSTÍN MISAEL VELÁZQUEZ MONROY",
+    "AXEL ARMANDO HUERTA GUARNEROS",
+    "DANNA ODEMARIS FUENTES OLGUÍN",
+    "MARICELA MARTÍNEZ HERNÁNDEZ",
+    "EMMA SHARAÍ MEJÍA GARCÍA",
+    "EMA ROZA ROA JIMÉNEZ",
+    "ANTONIO DE JESÚS CRUZ ROMERO",
+    "ANA MARÍA MARTÍNEZ RUBIO",
+    "CARLOS ALBERTO HERNÁNDEZ ACOSTA",
+    "ÁNGEL VELASCO ROCHA",
+    "MA GUADALUPE URBANO CASTILLO",
+    "MARÍA DE LOS ÁNGELES PERCASTEGUI JIMÉNEZ",
+    "ROSA LETICIA MUÑOZ CHÁVEZ",
+    "ELIZABETH MARGARITA NOGUEZ ROMERO",
+    "MARÍA SARA ORTIZ GONZÁLEZ",
+    "MINERVA OLGUÍN ÁNGELES",
+    "JUAN MOISÉS GÓMEZ AISPURO",
+    "ARIANA SALAS LUGO",
+    "MARÍA FERNANDA GUZMÁN ESCAMILLA",
+    "LIZBETH CASTRO LANDAVERDE",
+    "MARTHA PATRICIA BARRAGÁN GARCÍA",
+    "LAURA TRINIDAD HERNÁNDEZ DÍAZ",
+    "GABRIELA LETICIA MARTÍNEZ PÉREZ",
+    "VICTOR HUGO PÉREZ GUATI ROJO",
+    "PERLA ALELÍ BARRERA GODÍNEZ",
+    "CARLOS RODRIGO ROJAS RUIZ",
+    "ANA LUISA BAÑOS CASTRO",
+    "MAYTHE MONSERRAT ESCARELA PÉREZ",
+    "CRISTHIAN OMAR CORDERO ESTRADA",
+    "JOSÉ MANUEL NORIEGA DE LUCIO",
+    "ALFONSO GUDIÑO ZAMORA",
+    "SANDRA LIZBETH HERNÁNDEZ GARCÍA",
+    "ADRIANA ÁVILA FLORES",
+    "ARELY LÓPEZ VARGAS",
+    "ANA BRISNA CERVANTES HIDALGO",
+    "JULIO GIEZI HERNÁNDEZ GRAJEDA",
+    "EIRENE LÓPEZ APARICIO",
+    "MARY CARMEN LÓPEZ HERNÁNDEZ",
+    "RAÚL URIEL OLIVARES RÍOS",
+    "JUANITA CHÁVEZ PÉREZ",
+    "LIZETH VIDAL CANO",
+    "CARLOS CHARGOY RODRÍGUEZ",
+    "VIANEY CRISTINA SOLARES MORENO",
+    "SUSANA JIMÉNEZ HERNÁNDEZ",
+    "FRANCISCO REYES VÁZQUEZ",
+    "ABRIL HERNÁNDEZ GUERRERO",
+    "LUZ MARÍA LUQUE GÓMEZ",
+    "MARÍA ELENA TELLO SÁNCHEZ",
+    "MISAEL GUTIÉRREZ ISLAS",
+    "ERNESTO MARTÍNEZ AGUILAR",
+    "GABRIELA HERNÁNDEZ BUSTOS",
+    "JUAN ÁNGEL AGUILAR MENDOZA",
+    "GARDENIA CRUZ ESCUDERO",
+    "ROBERTO CARLOS LÓPEZ ESTRADA",
+    "SARABI VALENTINA DÍAZ TÉLLEZ GIRÓN",
+    "JORGE MIGUEL GARCÍA VÁZQUEZ",
+    "MARIBEL MOLINA HERNÁNDEZ",
+    "ABADI JOSEFINA JURADO GARNICA",
+    "ERICK ESPINOSA LORENZO",
+    "ROSA MARÍA PÉREZ GARCÍA",
+    "KARLA PAOLA MÉNDEZ MORALES",
+    "JOSÉ LUIS GONZÁLEZ MARTÍINEZ",
+    "IVÁN MERA CURIEL",
+    "FRANCISCA HERNÁNDEZ MONROY",
+    "SERGIO YAMIR BALDERAS BAUTISTA",
+    "LILIANA YAZMIN FRANCO CASTRO",
+    "XIMENA NAVA ESCAMILLA",
+    "MANUEL ALEJANDRO HERNÁNDEZ RIVERA",
+    "SERGIO VERGARA FLORES",
+    "SCARLETT OLGUÍN RODRÍGUEZ",
+    "AURELIA PATRICIA CASTAÑEDA MONTER",
+    "DANIELA PELCASTRE HERNÁNDEZ",
+    "ÁNGEL VLADIMIR SÁNCHEZ GARCÍA",
+    "PEDRO FUENTES AGUILAR",
+    "CARLOS ALEJANDRO SOTO GÓMEZ",
+    "MARÍA DE LA LUZ ESPINOSA HERNÁNDEZ",
+    "JUANA GUADALUPE HERNÁNDEZ ESPITIA",
+    "SAÚL PÉREZ LÓPEZ",
 ]
 
 LISTA_AVALA = [
@@ -333,7 +333,6 @@ with tab_edicion:
         xls = pd.ExcelFile(archivo)
         df = pd.read_excel(archivo, sheet_name=xls.sheet_names[0], header=None)
         
-        # Búsqueda automática de la fila de encabezados real
         header_idx = 29
         for idx, row in df.iterrows():
           row_str = str(row.values).lower()
@@ -348,7 +347,7 @@ with tab_edicion:
             subset=[col for col in df.columns if "Inventario" in str(col)]
         ).reset_index(drop=True)
 
-        # Limpieza de nombres de columnas técnicos evitando duplicados
+        # Mapeo y estandarización limpia de columnas exactas
         renombres = {}
         for col in df.columns:
           c_lower = str(col).lower().strip()
@@ -368,14 +367,8 @@ with tab_edicion:
             renombres[col] = "CARACTERISTICAS"
 
         df.rename(columns=renombres, inplace=True)
-        
-        # Eliminar columnas duplicadas si llegasen a existir en el Excel
         df = df.loc[:, ~df.columns.duplicated()]
-
-        # Eliminamos columnas basura o 'Unnamed'
-        df = df.loc[
-            :, ~df.columns.astype(str).str.contains("^Unnamed", case=False)
-        ]
+        df = df.loc[:, ~df.columns.astype(str).str.contains("^Unnamed", case=False)]
 
         if "AREA" not in df.columns:
           df["AREA"] = "DIRECCIÓN DE RECURSOS MATERIALES"
@@ -385,6 +378,25 @@ with tab_edicion:
           df.rename(columns={"OBSERVACIONES": "OBSERVACION"}, inplace=True)
         if "OBSERVACION" not in df.columns:
           df["OBSERVACION"] = ""
+
+        # Selección estricta y ordenada de columnas visibles en la app
+        columnas_deseadas = [
+            "NO.",
+            "INVENTARIO",
+            "DESCRIPCION",
+            "MARCA",
+            "MODELO",
+            "SERIE",
+            "CARACTERISTICAS",
+            "AREA",
+            "NOMBRE DEL USUARIO",
+            "OBSERVACION",
+        ]
+        for c in columnas_deseadas:
+          if c not in df.columns:
+            df[c] = ""
+            
+        df = df[[c for c in columnas_deseadas if c in df.columns]]
 
         return df.fillna("")
       except Exception as e:
@@ -396,15 +408,7 @@ with tab_edicion:
   df = cargar_datos(opcion_bd)
 
   if not df.empty:
-    columna_area = None
-    for col in df.columns:
-      if "area" in str(col).lower() or "dirección" in str(col).lower():
-        columna_area = col
-        break
-
-    if not columna_area:
-      df["AREA"] = "DIRECCIÓN DE RECURSOS MATERIALES"
-      columna_area = "AREA"
+    columna_area = "AREA" if "AREA" in df.columns else df.columns[0]
 
     areas_en_archivo = (
         df[columna_area].dropna().astype(str).str.strip().tolist()
@@ -455,18 +459,24 @@ with tab_edicion:
 
         if btn_agregar:
           nuevo_registro = {
+              "NO.": len(df) + 1,
               "INVENTARIO": str(nuevo_inv),
               "DESCRIPCION": str(nuevo_desc),
               "MARCA": str(nuevo_marca),
               "MODELO": str(nuevo_modelo),
               "SERIE": str(nuevo_serie),
               "CARACTERISTICAS": str(nuevo_carac),
+              "AREA": str(nueva_area_reg),
               "NOMBRE DEL USUARIO": str(nuevo_usuario),
-              columna_area: str(nueva_area_reg),
               "OBSERVACION": str(nuevo_obs),
           }
+          df_nuevo_row = pd.DataFrame([nuevo_registro])
+          for col in df.columns:
+            if col not in df_nuevo_row.columns:
+              df_nuevo_row[col] = ""
+
           df = pd.concat(
-              [df, pd.DataFrame([nuevo_registro])], ignore_index=True
+              [df, df_nuevo_row[df.columns]], ignore_index=True
           )
           df.to_excel(opcion_bd, index=False)
           st.success("¡Bien registrado correctamente!")
@@ -493,7 +503,7 @@ with tab_edicion:
       except Exception as e:
         st.error(f"Error al guardar: {e}")
 
-    # --- 5. GENERACIÓN DEL PDF EXCLUSIVO DEL ÁREA ---
+    # --- 5. GENERACIÓN DEL PDF EXCLUSIVO DEL ÁREA (SIN OBSERVACIONES) ---
     st.markdown("---")
     st.subheader("📄 Generación de Resguardo PDF Exclusivo de esta Área")
 
@@ -554,6 +564,7 @@ with tab_edicion:
           pdf.cell(30, 6, fecha_hoy, 0, 1, "R")
           pdf.ln(2)
 
+          # Columnas del PDF (Sin Observación)
           headers = [
               "No.",
               "INVENTARIO",
@@ -563,9 +574,8 @@ with tab_edicion:
               "SERIE",
               "CARACTERISTICAS",
               "NOMBRE DEL USUARIO",
-              "OBSERVACION",
           ]
-          widths = [8, 24, 42, 18, 18, 15, 52, 48, 32]
+          widths = [8, 28, 45, 20, 20, 15, 60, 61]  # Ancho total exacto = 257 mm
 
           pdf.set_font("Arial", "B", 6.5)
           for i, h in enumerate(headers):
@@ -581,7 +591,6 @@ with tab_edicion:
             serie_val = str(row.get("SERIE", "S/S"))
             carac_val = str(row.get("CARACTERISTICAS", ""))
             usu_val = str(row.get("NOMBRE DEL USUARIO", ""))
-            obs_val = str(row.get("OBSERVACION", ""))
 
             cell_data = [
                 str(idx),
@@ -592,7 +601,6 @@ with tab_edicion:
                 serie_val,
                 carac_val,
                 usu_val,
-                obs_val,
             ]
 
             line_h = 3.5
@@ -642,20 +650,43 @@ with tab_edicion:
           pdf.multi_cell(0, 3, nota_legal, 0, "J")
           pdf.ln(8)
 
-          # Cuadros de Firmas
+          # Cuadros de Firmas (con nombres impresos)
           y_firma = pdf.get_y()
-          pdf.rect(10, y_firma, 85, 15)
-          pdf.rect(98, y_firma, 85, 15)
-          pdf.rect(186, y_firma, 84, 15)
+          pdf.rect(10, y_firma, 85, 20)
+          pdf.rect(98, y_firma, 85, 20)
+          pdf.rect(186, y_firma, 84, 20)
 
-          pdf.set_xy(10, y_firma + 11)
-          pdf.cell(
-              85, 3, "FIRMA DEL SERVIDOR PÚBLICO RESPONSABLE", 0, 0, "C"
-          )
-          pdf.set_xy(98, y_firma + 11)
+          # 1. Títulos en la parte superior de cada recuadro
+          pdf.set_font("Arial", "B", 5.5)
+          pdf.set_xy(10, y_firma + 2)
+          pdf.cell(85, 3, "FIRMA DEL SERVIDOR PÚBLICO RESPONSABLE", 0, 0, "C")
+          pdf.set_xy(98, y_firma + 2)
           pdf.cell(85, 3, "AVALA", 0, 0, "C")
-          pdf.set_xy(186, y_firma + 11)
+          pdf.set_xy(186, y_firma + 2)
           pdf.cell(84, 3, "Vo.Bo.", 0, 1, "C")
+
+          # 2. Línea divisoria de firma en medio
+          pdf.set_font("Arial", "", 6)
+          pdf.set_xy(15, y_firma + 9)
+          pdf.cell(75, 2, "_" * 45, 0, 0, "C")
+          pdf.set_xy(103, y_firma + 9)
+          pdf.cell(75, 2, "_" * 45, 0, 0, "C")
+          pdf.set_xy(191, y_firma + 9)
+          pdf.cell(74, 2, "_" * 45, 0, 1, "C")
+
+          # 3. Nombres en la parte inferior de los recuadros
+          pdf.set_font("Arial", "B", 5.5)
+          pdf.set_xy(10, y_firma + 13)
+          pdf.cell(85, 3, firmante_responsable, 0, 0, "C")
+          pdf.set_xy(98, y_firma + 13)
+          pdf.cell(85, 3, firmante_avala, 0, 0, "C")
+          pdf.set_xy(186, y_firma + 13)
+          pdf.cell(84, 3, "MTRA. ROSA LETICIA MUÑOZ CHAVEZ", 0, 1, "C")
+
+          # Cargo institucional inferior exclusivo del Vo.Bo.
+          pdf.set_font("Arial", "", 5)
+          pdf.set_xy(186, y_firma + 16.5)
+          pdf.cell(84, 3, "COORDINADORA ADMINISTRATIVA", 0, 1, "C")
 
           output_pdf = "resguardo_area.pdf"
           pdf.output(output_pdf)
