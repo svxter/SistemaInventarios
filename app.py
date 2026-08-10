@@ -19,7 +19,7 @@ st.markdown(
 
 # --- CATÁLOGO MAESTRO DE ÁREAS INSTITUCIONALES (Completas y sin abreviaciones) ---
 AREAS_MAESTRAS = [
-    "DIRECCIÓN DE GESTIÓN INSTITUCIONAL",
+    "DIRECCION DE GESTION INSTITUCIONAL",
     "ÓRGANO INTERNO DE CONTROL",
     "DIRECCIÓN GENERAL DE ASISTENCIA, ATENCIÓN Y PROTECCIÓN",
     "SUBSECRETARÍA DE INCLUSIÓN Y DESARROLLO",
@@ -348,7 +348,7 @@ with tab_edicion:
             subset=[col for col in df.columns if "Inventario" in str(col)]
         ).reset_index(drop=True)
 
-        # Mapeo limpio para unificar los nombres de las columnas exactamente como los pides
+        # Limpieza de nombres de columnas técnicos evitando duplicados
         renombres = {}
         for col in df.columns:
           c_lower = str(col).lower().strip()
@@ -369,6 +369,9 @@ with tab_edicion:
 
         df.rename(columns=renombres, inplace=True)
         
+        # Eliminar columnas duplicadas si llegasen a existir en el Excel
+        df = df.loc[:, ~df.columns.duplicated()]
+
         # Eliminamos columnas basura o 'Unnamed'
         df = df.loc[
             :, ~df.columns.astype(str).str.contains("^Unnamed", case=False)
@@ -469,7 +472,7 @@ with tab_edicion:
           st.success("¡Bien registrado correctamente!")
           st.rerun()
 
-    # --- 4. PANEL PRINCIPAL: TABLA EDITABLE CON ENCABEZADOS LIMPIOS ---
+    # --- 4. PANEL PRINCIPAL: TABLA EDITABLE ---
     st.subheader(
         f"Visualizando registros de: {opcion_bd} (Área: {area_seleccionada})"
     )
