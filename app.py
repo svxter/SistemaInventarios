@@ -20,7 +20,7 @@ st.markdown(
 # --- DICCIONARIO DE LOS 18 BIENES Y SUS DESCRIPCIONES COMPLETAS ---
 CATALOGO_BIENES_DESCRIPCIONES = {
     "SILLA PARA ANALISTA BRAZO COMPLETO": "Color: negro. Descripción: Respaldo en polipropileno, tapizado en malla, con soporte lumbar, asiento con espuma tapizado en tela, base de nylon con ruedas, respaldo de 0.42 metros de altura (+- 3 centímetros), mecanismo de palanca para activar pistón y bloqueo de reclinamiento.",
-    "SILLA EJECUTIVA NEGRA": "Color: negro. Descripción: Asiento tapizado in tela color negro, respaldo ergonómico en malla e incluye un soporte lumbar ajustable tanto en altura como en profundidad, base en nylon, con 5 ruedas. Respaldo con altura de 0.53 metros (+- 3 centímetros). Mecanismo de palanca para activar el pistón y bloquear el reclinamiento. Pistón con rebosador de base; brazos de polipropileno con ajuste de altura. Cabecera tapizada en malla y ajustable en altura y ángulo.",
+    "SILLA EJECUTIVA NEGRA": "Color: negro. Descripción: Asiento tapizado en tela color negro, respaldo ergonómico en malla e incluye un soporte lumbar ajustable tanto en altura como en profundidad, base en nylon, con 5 ruedas. Respaldo con altura de 0.53 metros (+- 3 centímetros). Mecanismo de palanca para activar el pistón y bloquear el reclinamiento. Pistón con rebosador de base; brazos de polipropileno con ajuste de altura. Cabecera tapizada en malla y ajustable en altura y ángulo.",
     "SILLA EJECUTIVA GRIS": "Color: Gris con negro Descripción: Cabecera ajustable, respaldo alto tapizado en malla gris, inclinacion y soporte lumbar ajustable, asiento ajustable, tapizado en tela gris, base de aluminio y 5 ruedas. Mecanismo  con perillas de autoequilibrio y ajuste de tension, palancas para ajuste de altura, ajuste de reclinamiento, brazos con altura ajustable y coderas de poliurertano con ajustes de apertura.",
     "SILLA PARA ANALISTA BRAZO AJUSTABLE": "Color: negro. Descripción: respaldo tapizado en malla con almohadilla lumbar, asiento de espuma estándar tapizado en tela, base de nylon con 5 ruedas, Respaldo con una altura de 0.50 metros (+- 3 centímetros). Mecanismo ajustable de altura y bloqueo de reclinamiento, brazos de polipropileno sujetos al respaldo, ajustables en posición vertical como opción para ocultarlos.",
     "BANCA DE RECEPCION": "Color gris. Medidas: 1.75 metros de largo por 0.47 metros de ancho,por 0.78 metros de altura(+-3 centimetros en todas las medidas). Descripcion: De 3 plazas, asiento  y respaldo en ujna sola pieza, de lamina de acero  calibre 14 multiperforada con diseño ergonomico y pintura color gris con doblez en los extremos y esquinas para evitar filos. Estructura: Con soportes laterales, trabe horizontal inferior para  soportar los asientos, fabricada en perfil de acero con placas soldadas para atornillar los soportes del asiento y terminada en pintura color gris. Patas y brazos: Laterales fabricados en lamina y soldadura con acabado cromo, con soporte para recibir los extremos de la trabe sin tornillos visibles.",
@@ -232,44 +232,40 @@ with tab_edicion:
 
     with st.expander("➕ Registrar Nuevo Bien / Asignar Área", expanded=False):
       st.markdown(f"Agrega un bien directamente en **{opcion_bd}**:")
-      with st.form("form_nuevo_bien"):
-        c1, c2, c3 = st.columns(3)
-        with c1:
-          nuevo_inv = st.text_input("Inventario")
-          # Menú desplegable con los 18 bienes para la Descripción
-          lista_nombres_bienes = list(CATALOGO_BIENES_DESCRIPCIONES.keys())
-          nuevo_desc = st.selectbox("Descripción (Bien)", lista_nombres_bienes)
-          nuevo_marca = st.text_input("Marca", "SIN MARCA")
-        with c2:
-          nuevo_modelo = st.text_input("Modelo", "SIN MODELO")
-          nuevo_serie = st.text_input("Serie", "S/S")
-          # Características se llena automáticamente con la descripción correspondiente al bien seleccionado
-          caracteristica_automatica = CATALOGO_BIENES_DESCRIPCIONES.get(nuevo_desc, "")
-          nuevo_carac = st.text_area("Características (Automática)", value=caracteristica_automatica, height=100)
-        with c3:
-          nuevo_usuario = st.selectbox("Nombre del Servidor Público / Usuario", LISTA_RESPONSABLES)
-          nueva_area_reg = st.selectbox("Área de Adscripción", todas_las_areas)
-          nuevo_obs = st.text_input("Observaciones", "")
+      
+      c1, c2, c3 = st.columns(3)
+      with c1:
+        nuevo_inv = st.text_input("Inventario")
+        lista_nombres_bienes = list(CATALOGO_BIENES_DESCRIPCIONES.keys())
+        nuevo_desc = st.selectbox("Descripción (Bien)", lista_nombres_bienes)
+        nuevo_marca = st.text_input("Marca", "SIN MARCA")
+      with c2:
+        nuevo_modelo = st.text_input("Modelo", "SIN MODELO")
+        nuevo_serie = st.text_input("Serie", "S/S")
+        caracteristica_automatica = CATALOGO_BIENES_DESCRIPCIONES.get(nuevo_desc, "")
+        nuevo_carac = st.text_area("Características (Automática)", value=caracteristica_automatica, height=100)
+      with c3:
+        nuevo_usuario = st.selectbox("Nombre del Servidor Público / Usuario", LISTA_RESPONSABLES)
+        nueva_area_reg = st.selectbox("Área de Adscripción", todas_las_areas)
+        nuevo_obs = st.text_input("Observaciones", "")
 
-        btn_agregar = st.form_submit_button("Guardar Bien en la Base de Datos")
-
-        if btn_agregar:
-          nuevo_registro = {
-              "NO.": str(len(df) + 1),
-              "INVENTARIO": str(nuevo_inv),
-              "DESCRIPCION": str(nuevo_desc),
-              "MARCA": str(nuevo_marca),
-              "MODELO": str(nuevo_modelo),
-              "SERIE": str(nuevo_serie),
-              "CARACTERISTICAS": str(nuevo_carac),
-              "AREA": str(nueva_area_reg),
-              "NOMBRE DEL USUARIO": str(nuevo_usuario),
-              "OBSERVACION": str(nuevo_obs),
-          }
-          df = pd.concat([df, pd.DataFrame([nuevo_registro])], ignore_index=True)
-          df.to_excel(opcion_bd, index=False)
-          st.success("¡Bien registrado correctamente!")
-          st.rerun()
+      if st.button("Guardar Bien en la Base de Datos", type="primary"):
+        nuevo_registro = {
+            "NO.": str(len(df) + 1),
+            "INVENTARIO": str(nuevo_inv),
+            "DESCRIPCION": str(nuevo_desc),
+            "MARCA": str(nuevo_marca),
+            "MODELO": str(nuevo_modelo),
+            "SERIE": str(nuevo_serie),
+            "CARACTERISTICAS": str(nuevo_carac),
+            "AREA": str(nueva_area_reg),
+            "NOMBRE DEL USUARIO": str(nuevo_usuario),
+            "OBSERVACION": str(nuevo_obs),
+        }
+        df = pd.concat([df, pd.DataFrame([nuevo_registro])], ignore_index=True)
+        df.to_excel(opcion_bd, index=False)
+        st.success("¡Bien registrado correctamente!")
+        st.rerun()
 
     st.subheader(f"Visualizando registros de: {opcion_bd} (Área: {area_seleccionada})")
     st.markdown(f"Total de bienes en esta vista: **{len(df_filtrado)}**")
