@@ -261,15 +261,30 @@ with tab_edicion:
     st.subheader(f"Visualizando registros de: {opcion_bd} (Área: {area_seleccionada})")
     st.markdown(f"Total de bienes en esta vista: **{len(df_filtrado)}**")
 
-    df_editado = st.data_editor(df_filtrado, num_rows="dynamic", use_container_width=True, key="editor_principal")
+    # 1. Mostramos el editor de datos (la tabla interactiva)
+    df_editado = st.data_editor(
+        df_filtrado, 
+        num_rows="dynamic", 
+        use_container_width=True, 
+        key="editor_principal"
+    )
 
-    if st.button("💾 Guardar Cambios en Excel"):
-      try:
-        df.update(df_editado.astype(str))
-        df.to_excel(opcion_bd, index=False)
-        st.success("¡Cambios guardados en el archivo de Excel con éxito!")
-      except Exception as e:
-        st.error(f"Error al guardar: {e}")
+    # 2. Botón optimizado para guardar permanentemente en el archivo Excel
+    if st.button("💾 Guardar Cambios en Excel", type="primary"):
+        try:
+            # Sincronizamos los cambios del editor con el DataFrame principal
+            df.update(df_editado.astype(str))
+            
+            # Sobreescribimos el archivo físico en disco
+            df.to_excel(opcion_bd, index=False)
+            
+            # El "st.rerun()" es vital: fuerza a la aplicación a leer el archivo 
+            # de nuevo desde el disco, asegurando que los datos persistan.
+            st.success("¡Cambios guardados permanentemente en el archivo!")
+            st.rerun() 
+            
+        except Exception as e:
+            st.error(f"Error al guardar: {e}")
 
     # --- GENERACIÓN DE PDF ALTAMENTE OPTIMIZADA (SIN ESPACIOS EXCESIVOS) ---
     st.markdown("---")
