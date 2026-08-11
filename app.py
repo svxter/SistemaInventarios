@@ -41,26 +41,17 @@ CATALOGO_BIENES_DESCRIPCIONES = {
 
 # --- CATÁLOGO MAESTRO DE ÁREAS INSTITUCIONALES ---
 AREAS_MAESTRAS = [
-    "DIRECCION DE GESTION INSTITUCIONAL",
-    "ÓRGANO INTERNO DE CONTROL",
-    "DIRECCIÓN GENERAL DE ASISTENCIA, ATENCIÓN Y PROTECCIÓN",
-    "SUBSECRETARÍA DE INCLUSIÓN Y DESARROLLO",
-    "DIRECCIÓN GENERAL DE PROSPECTIVA, PLANEACIÓN Y EVALUACIÓN DE LOS PROGRAMAS SOCIALES",
-    "DIRECCIÓN GENERAL DE OPERACIÓN Y LOGÍSTICA DE PROGRAMAS",
-    "COORDINACIÓN ADMINISTRATIVA",
-    "SUBDIRECCIÓN DE INTEGRACIÓN Y CONTROL DE INFORMACIÓN",
-    "DIRECCIÓN DE RECURSOS FINANCIEROS",
-    "DIRECCIÓN DE RECURSOS HUMANOS",
-    "DIRECCIÓN DE CONTROL Y SEGUIMIENTO DE AUDITORÍA",
-    "SUBSECRETARÍA DE PARTICIPACIÓN SOCIAL Y FOMENTO ARTESANAL",
-    "DIRECCIÓN GENERAL DE FOMENTO ARTESANAL",
-    "SUBSECRETARÍA DE DESARROLLO SOCIAL Y HUMANO",
-    "DIRECCIÓN GENERAL DE ATENCIÓN AL MIGRANTE",
-    "DIRECCIÓN GENERAL DE INCLUSIÓN PARA LAS PERSONAS CON DISCAPACIDAD",
-    "DIRECCIÓN DE RECURSOS MATERIALES",
-    "DIRECCIÓN GENERAL DE SERVIDORES DEL PUEBLO",
-    "CONTACT CENTER",
-    "DIRECCIÓN DE SUBSIDIO AL SERVICIO DE VERIFICACIÓN VEHICULAR",
+    "DIRECCION DE GESTION INSTITUCIONAL", "ÓRGANO INTERNO DE CONTROL", 
+    "DIRECCIÓN GENERAL DE ASISTENCIA, ATENCIÓN Y PROTECCIÓN", "SUBSECRETARÍA DE INCLUSIÓN Y DESARROLLO", 
+    "DIRECCIÓN GENERAL DE PROSPECTIVA, PLANEACIÓN Y EVALUACIÓN DE LOS PROGRAMAS SOCIALES", 
+    "DIRECCIÓN GENERAL DE OPERACIÓN Y LOGÍSTICA DE PROGRAMAS", "COORDINACIÓN ADMINISTRATIVA", 
+    "SUBDIRECCIÓN DE INTEGRACIÓN Y CONTROL DE INFORMACIÓN", "DIRECCIÓN DE RECURSOS FINANCIEROS", 
+    "DIRECCIÓN DE RECURSOS HUMANOS", "DIRECCIÓN DE CONTROL Y SEGUIMIENTO DE AUDITORÍA", 
+    "SUBSECRETARÍA DE PARTICIPACIÓN SOCIAL Y FOMENTO ARTESANAL", "DIRECCIÓN GENERAL DE FOMENTO ARTESANAL", 
+    "SUBSECRETARÍA DE DESARROLLO SOCIAL Y HUMANO", "DIRECCIÓN GENERAL DE ATENCIÓN AL MIGRANTE", 
+    "DIRECCIÓN GENERAL DE INCLUSIÓN PARA LAS PERSONAS CON DISCAPACIDAD", "DIRECCIÓN DE RECURSOS MATERIALES", 
+    "DIRECCIÓN GENERAL DE SERVIDORES DEL PUEBLO", "CONTACT CENTER", 
+    "DIRECCIÓN DE SUBSIDIO AL SERVICIO DE VERIFICACIÓN VEHICULAR"
 ]
 
 LISTA_RESPONSABLES = [
@@ -280,7 +271,7 @@ with tab_edicion:
       except Exception as e:
         st.error(f"Error al guardar: {e}")
 
-    # --- GENERACIÓN DE PDF ---
+    # --- GENERACIÓN DE PDF OPTIMIZADA (SIN ESPACIOS EN BLANCO EXCESIVOS) ---
     st.markdown("---")
     st.subheader("📄 Generación de Resguardo PDF Exclusivo de esta Área")
     col_f1, col_f2 = st.columns(2)
@@ -294,41 +285,44 @@ with tab_edicion:
         st.warning("Por favor selecciona un **Área específica** en la barra lateral para generar su resguardo individual.")
       else:
         try:
+          # Usamos márgenes laterales de 6 mm para aprovechar mejor la hoja horizontal (Ancho total útil = 267 mm)
           pdf = FPDF(orientation="L", unit="mm", format="letter")
+          pdf.set_margins(left=6, top=8, right=6)
           pdf.add_page()
-          pdf.set_auto_page_break(auto=True, margin=10)
+          pdf.set_auto_page_break(auto=True, margin=6)
 
           if os.path.exists("BIENESTAR8.png"):
-            pdf.image("BIENESTAR8.png", x=10, y=8, w=62)
+            pdf.image("BIENESTAR8.png", x=6, y=6, w=55)
 
-          pdf.set_font("Arial", "B", 10)
-          pdf.cell(0, 6, "SECRETARÍA DE BIENESTAR E INCLUSIÓN SOCIAL", 0, 1, "C")
-          pdf.set_font("Arial", "B", 8)
-          pdf.cell(0, 4, "COORDINACIÓN ADMINISTRATIVA", 0, 1, "C")
-          pdf.cell(0, 4, "INVENTARIO DE BIENES MUEBLES 2026", 0, 1, "C")
-          pdf.cell(0, 4, "RESGUARDO INDIVIDUAL INTERNO", 0, 1, "C")
-          pdf.ln(5)
-
-          fecha_hoy = datetime.now().strftime("%d/%m/%Y")
-          pdf.set_font("Arial", "B", 8)
-          pdf.cell(15, 6, "AREA:", 0, 0, "L")
-          pdf.set_font("Arial", "", 8)
-          pdf.cell(140, 6, area_seleccionada, 0, 0, "L")
-          pdf.set_font("Arial", "B", 8)
-          pdf.cell(20, 6, "FECHA:", 0, 0, "R")
-          pdf.set_font("Arial", "", 8)
-          pdf.cell(30, 6, fecha_hoy, 0, 1, "R")
+          pdf.set_font("Arial", "B", 9)
+          pdf.cell(0, 5, "SECRETARÍA DE BIENESTAR E INCLUSIÓN SOCIAL", 0, 1, "C")
+          pdf.set_font("Arial", "B", 7.5)
+          pdf.cell(0, 3.5, "COORDINACIÓN ADMINISTRATIVA", 0, 1, "C")
+          pdf.cell(0, 3.5, "INVENTARIO DE BIENES MUEBLES 2026", 0, 1, "C")
+          pdf.cell(0, 3.5, "RESGUARDO INDIVIDUAL INTERNO", 0, 1, "C")
           pdf.ln(2)
 
-          headers = ["No.", "INVENTARIO", "DESCRIPCION", "MARCA", "MODELO", "SERIE", "CARACTERISTICAS", "NOMBRE DEL USUARIO"]
-          widths = [8, 28, 45, 20, 20, 15, 60, 61]
+          fecha_hoy = datetime.now().strftime("%d/%m/%Y")
+          pdf.set_font("Arial", "B", 7.5)
+          pdf.cell(15, 5, "AREA:", 0, 0, "L")
+          pdf.set_font("Arial", "", 7.5)
+          pdf.cell(150, 5, area_seleccionada, 0, 0, "L")
+          pdf.set_font("Arial", "B", 7.5)
+          pdf.cell(20, 5, "FECHA:", 0, 0, "R")
+          pdf.set_font("Arial", "", 7.5)
+          pdf.cell(42, 5, fecha_hoy, 0, 1, "R")
+          pdf.ln(1)
 
-          pdf.set_font("Arial", "B", 6.5)
+          # Anchos optimizados que suman exactamente 267 mm (ancho útil de la página)
+          headers = ["No.", "INVENTARIO", "DESCRIPCION", "MARCA", "MODELO", "SERIE", "CARACTERISTICAS", "NOMBRE DEL USUARIO"]
+          widths = [8, 26, 42, 18, 18, 14, 75, 66]
+
+          pdf.set_font("Arial", "B", 6)
           for i, h in enumerate(headers):
-            pdf.cell(widths[i], 5, h, 1, 0, "C")
+            pdf.cell(widths[i], 4.5, h, 1, 0, "C")
           pdf.ln()
 
-          pdf.set_font("Arial", "", 6)
+          pdf.set_font("Arial", "", 5.5)
           for idx, (_, row) in enumerate(df_filtrado.iterrows(), start=1):
             cell_data = [
                 str(idx),
@@ -341,59 +335,60 @@ with tab_edicion:
                 str(row.get("NOMBRE DEL USUARIO", ""))
             ]
 
-            line_h = 3.5
+            line_h = 3.0
             max_lines = 1
             for i, text in enumerate(cell_data):
               if widths[i] > 0 and len(text) > 0:
-                chars_per_line = max(4, int(widths[i] / 1.8))
+                chars_per_line = max(4, int(widths[i] / 1.6))
                 lines = max(1, int(len(text) / chars_per_line) + (1 if len(text) % chars_per_line > 0 else 0))
                 if lines > max_lines: max_lines = lines
 
-            row_height = max(5, max_lines * line_h + 1.5)
+            row_height = max(4.5, max_lines * line_h + 1.0)
             x_start, y_start = pdf.get_x(), pdf.get_y()
 
             for i, text in enumerate(cell_data):
               current_x, current_y = pdf.get_x(), pdf.get_y()
               pdf.rect(current_x, current_y, widths[i], row_height)
-              pdf.set_xy(current_x + 1, current_y + 0.8)
-              pdf.multi_cell(widths[i] - 2, line_h, text, 0, "L")
+              pdf.set_xy(current_x + 0.8, current_y + 0.5)
+              pdf.multi_cell(widths[i] - 1.6, line_h, text, 0, "L")
               pdf.set_xy(current_x + widths[i], current_y)
 
             pdf.set_xy(x_start, y_start + row_height)
 
-          # --- NOTA LEGAL DENTRO DE UN CUADRO ---
-          pdf.ln(4)
-          pdf.set_font("Arial", "", 4.8)
+          # --- NOTA LEGAL COMPACTA ---
+          pdf.ln(2.5)
+          pdf.set_font("Arial", "", 4.5)
           nota_legal = "CON FUNDAMENTO EN LO DISPUESTO POR LOS ARTÍCULOS 149 V EN FRACCIÓN II DE LA CONSTITUCIÓN POLÍTICA DEL ESTADO DE HIDALGO; 7 FRACCIÓN III DE LA LEY GENERAL DE RESPONSABILIDADES ADMINISTRATIVAS; 2 PÁRRAFO ÚNICO DE LA LEY ORGÁNICA DE LA ADMINISTRACIÓN PÚBLICA DEL ESTADO DE HIDALGO; 4 FRACCIÓN VI, 6 FRACCIÓN IV Y 45 SÉPTIMO Y OCTAVO PÁRRAFO DE LAS NORMAS GENERALES PARA ADMINISTRAR Y CONTROLAR LOS BIENES MUEBLES... RECIBÍ DE COMPLETA CONFORMIDAD LOS BIENES MUEBLES ANTES LISTADOS."
           
           y_nota = pdf.get_y()
-          pdf.rect(10, y_nota, 257, 12)
-          pdf.set_xy(12, y_nota + 1.5)
-          pdf.multi_cell(253, 2.8, nota_legal, 0, "J")
-          pdf.ln(5)
+          pdf.rect(6, y_nota, 267, 10)
+          pdf.set_xy(7.5, y_nota + 1.0)
+          pdf.multi_cell(264, 2.5, nota_legal, 0, "J")
+          pdf.ln(3.5)
 
+          # --- BLOQUE DE FIRMAS COMPACTO ---
           y_firma = pdf.get_y()
-          pdf.rect(10, y_firma, 85, 20)
-          pdf.rect(98, y_firma, 85, 20)
-          pdf.rect(186, y_firma, 84, 20)
+          pdf.rect(6, y_firma, 88, 18)
+          pdf.rect(95, y_firma, 88, 18)
+          pdf.rect(184, y_firma, 89, 18)
 
-          pdf.set_font("Arial", "B", 5.5)
-          pdf.set_xy(10, y_firma + 2); pdf.cell(85, 3, "FIRMA DEL SERVIDOR PÚBLICO RESPONSABLE", 0, 0, "C")
-          pdf.set_xy(98, y_firma + 2); pdf.cell(85, 3, "AVALA", 0, 0, "C")
-          pdf.set_xy(186, y_firma + 2); pdf.cell(84, 3, "Vo.Bo.", 0, 1, "C")
+          pdf.set_font("Arial", "B", 5)
+          pdf.set_xy(6, y_firma + 1.5); pdf.cell(88, 2.5, "FIRMA DEL SERVIDOR PÚBLICO RESPONSABLE", 0, 0, "C")
+          pdf.set_xy(95, y_firma + 1.5); pdf.cell(88, 2.5, "AVALA", 0, 0, "C")
+          pdf.set_xy(184, y_firma + 1.5); pdf.cell(89, 2.5, "Vo.Bo.", 0, 1, "C")
 
-          pdf.set_font("Arial", "", 6)
-          pdf.set_xy(15, y_firma + 9); pdf.cell(75, 2, "_" * 45, 0, 0, "C")
-          pdf.set_xy(103, y_firma + 9); pdf.cell(75, 2, "_" * 45, 0, 0, "C")
-          pdf.set_xy(191, y_firma + 9); pdf.cell(74, 2, "_" * 45, 0, 1, "C")
+          pdf.set_font("Arial", "", 5.5)
+          pdf.set_xy(10, y_firma + 7.5); pdf.cell(80, 2, "_" * 42, 0, 0, "C")
+          pdf.set_xy(99, y_firma + 7.5); pdf.cell(80, 2, "_" * 42, 0, 0, "C")
+          pdf.set_xy(188, y_firma + 7.5); pdf.cell(81, 2, "_" * 42, 0, 1, "C")
 
-          pdf.set_font("Arial", "B", 5.5)
-          pdf.set_xy(10, y_firma + 13); pdf.cell(85, 3, firmante_responsable, 0, 0, "C")
-          pdf.set_xy(98, y_firma + 13); pdf.cell(85, 3, firmante_avala, 0, 0, "C")
-          pdf.set_xy(186, y_firma + 13); pdf.cell(84, 3, "MTRA. ROSA LETICIA MUÑOZ CHÁVEZ", 0, 1, "C")
+          pdf.set_font("Arial", "B", 5)
+          pdf.set_xy(6, y_firma + 11.0); pdf.cell(88, 2.5, firmante_responsable, 0, 0, "C")
+          pdf.set_xy(95, y_firma + 11.0); pdf.cell(88, 2.5, firmante_avala, 0, 0, "C")
+          pdf.set_xy(184, y_firma + 11.0); pdf.cell(89, 2.5, "MTRA. ROSA LETICIA MUÑOZ CHÁVEZ", 0, 1, "C")
 
-          pdf.set_font("Arial", "", 5)
-          pdf.set_xy(186, y_firma + 16.5); pdf.cell(84, 3, "COORDINADORA ADMINISTRATIVA", 0, 1, "C")
+          pdf.set_font("Arial", "", 4.5)
+          pdf.set_xy(184, y_firma + 14.0); pdf.cell(89, 2.5, "COORDINADORA ADMINISTRATIVA", 0, 1, "C")
 
           output_pdf = "resguardo_area.pdf"
           pdf.output(output_pdf)
