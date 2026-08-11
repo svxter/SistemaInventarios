@@ -271,7 +271,7 @@ with tab_edicion:
       except Exception as e:
         st.error(f"Error al guardar: {e}")
 
-    # --- GENERACIÓN DE PDF OPTIMIZADA (SIN ESPACIOS EN BLANCO EXCESIVOS) ---
+    # --- GENERACIÓN DE PDF ALTAMENTE OPTIMIZADA (SIN ESPACIOS EXCESIVOS) ---
     st.markdown("---")
     st.subheader("📄 Generación de Resguardo PDF Exclusivo de esta Área")
     col_f1, col_f2 = st.columns(2)
@@ -286,45 +286,43 @@ with tab_edicion:
       else:
         try:
           pdf = FPDF(orientation="L", unit="mm", format="letter")
-          pdf.set_margins(left=6, top=8, right=6)
+          pdf.set_margins(left=6, top=6, right=6)
           pdf.add_page()
-          # Desactivamos el auto page break predeterminado para controlarlo nosotros con precisión
           pdf.set_auto_page_break(auto=False, margin=6)
 
           def imprimir_encabezado():
             if os.path.exists("BIENESTAR8.png"):
-              pdf.image("BIENESTAR8.png", x=6, y=6, w=55)
-            pdf.set_font("Arial", "B", 9)
-            pdf.cell(0, 5, "SECRETARÍA DE BIENESTAR E INCLUSIÓN SOCIAL", 0, 1, "C")
-            pdf.set_font("Arial", "B", 7.5)
-            pdf.cell(0, 3.5, "COORDINACIÓN ADMINISTRATIVA", 0, 1, "C")
-            pdf.cell(0, 3.5, "INVENTARIO DE BIENES MUEBLES 2026", 0, 1, "C")
-            pdf.cell(0, 3.5, "RESGUARDO INDIVIDUAL INTERNO", 0, 1, "C")
-            pdf.ln(2)
+              pdf.image("BIENESTAR8.png", x=6, y=5, w=50)
+            pdf.set_font("Arial", "B", 8.5)
+            pdf.cell(0, 4.5, "SECRETARÍA DE BIENESTAR E INCLUSIÓN SOCIAL", 0, 1, "C")
+            pdf.set_font("Arial", "B", 7)
+            pdf.cell(0, 3, "COORDINACIÓN ADMINISTRATIVA", 0, 1, "C")
+            pdf.cell(0, 3, "INVENTARIO DE BIENES MUEBLES 2026", 0, 1, "C")
+            pdf.cell(0, 3, "RESGUARDO INDIVIDUAL INTERNO", 0, 1, "C")
+            pdf.ln(1.5)
 
             fecha_hoy = datetime.now().strftime("%d/%m/%Y")
-            pdf.set_font("Arial", "B", 7.5)
-            pdf.cell(15, 5, "AREA:", 0, 0, "L")
-            pdf.set_font("Arial", "", 7.5)
-            pdf.cell(150, 5, area_seleccionada, 0, 0, "L")
-            pdf.set_font("Arial", "B", 7.5)
-            pdf.cell(20, 5, "FECHA:", 0, 0, "R")
-            pdf.set_font("Arial", "", 7.5)
-            pdf.cell(42, 5, fecha_hoy, 0, 1, "R")
+            pdf.set_font("Arial", "B", 7)
+            pdf.cell(15, 4.5, "AREA:", 0, 0, "L")
+            pdf.set_font("Arial", "", 7)
+            pdf.cell(150, 4.5, area_seleccionada, 0, 0, "L")
+            pdf.set_font("Arial", "B", 7)
+            pdf.cell(20, 4.5, "FECHA:", 0, 0, "R")
+            pdf.set_font("Arial", "", 7)
+            pdf.cell(42, 4.5, fecha_hoy, 0, 1, "R")
             pdf.ln(1)
 
-            # Cabecera de la tabla
             global headers, widths
             pdf.set_font("Arial", "B", 6)
             for i, h in enumerate(headers):
-              pdf.cell(widths[i], 4.5, h, 1, 0, "C")
+              pdf.cell(widths[i], 4.0, h, 1, 0, "C")
             pdf.ln()
 
           headers = ["No.", "INVENTARIO", "DESCRIPCION", "MARCA", "MODELO", "SERIE", "CARACTERISTICAS", "NOMBRE DEL USUARIO"]
           widths = [8, 26, 42, 18, 18, 14, 75, 66]
 
           imprimir_encabezado()
-          pdf.set_font("Arial", "", 5.5)
+          pdf.set_font("Arial", "", 5) # Letra más compacta para aprovechar espacio
 
           for idx, (_, row) in enumerate(df_filtrado.iterrows(), start=1):
             cell_data = [
@@ -338,71 +336,69 @@ with tab_edicion:
                 str(row.get("NOMBRE DEL USUARIO", ""))
             ]
 
-            line_h = 3.0
+            line_h = 2.6
             max_lines = 1
             for i, text in enumerate(cell_data):
               if widths[i] > 0 and len(text) > 0:
-                chars_per_line = max(4, int(widths[i] / 1.6))
+                chars_per_line = max(4, int(widths[i] / 1.5))
                 lines = max(1, int(len(text) / chars_per_line) + (1 if len(text) % chars_per_line > 0 else 0))
                 if lines > max_lines: max_lines = lines
 
-            row_height = max(4.5, max_lines * line_h + 1.0)
+            row_height = max(4.0, max_lines * line_h + 0.8)
 
-            # ESPACIO MÍNIMO NECESARIO ANTES DE SALTO DE PÁGINA (Tabla + Nota + Firmas = ~50mm requeridos al final)
-            espacio_footer_necesario = 45
-            if pdf.get_y() + row_height > (215 - espacio_footer_necesario):
+            # Si la fila no cabe antes del bloque inferior (~45mm necesarios), saltamos de página limpio
+            if pdf.get_y() + row_height > 170:
               pdf.add_page()
               imprimir_encabezado()
-              pdf.set_font("Arial", "", 5.5)
+              pdf.set_font("Arial", "", 5)
 
             x_start, y_start = pdf.get_x(), pdf.get_y()
             for i, text in enumerate(cell_data):
               current_x, current_y = pdf.get_x(), pdf.get_y()
               pdf.rect(current_x, current_y, widths[i], row_height)
-              pdf.set_xy(current_x + 0.8, current_y + 0.5)
-              pdf.multi_cell(widths[i] - 1.6, line_h, text, 0, "L")
+              pdf.set_xy(current_x + 0.6, current_y + 0.4)
+              pdf.multi_cell(widths[i] - 1.2, line_h, text, 0, "L")
               pdf.set_xy(current_x + widths[i], current_y)
 
             pdf.set_xy(x_start, y_start + row_height)
 
-          # --- BLOQUE DE CIERRE (NOTA LEGAL Y FIRMAS) ---
-          # Si no hay espacio suficiente para la nota y las firmas en esta página, salta limpio a una nueva
-          if pdf.get_y() > 155:
+          # --- BLOQUE DE CIERRE (NOTA LEGAL Y FIRMAS) COMPACTO ---
+          if pdf.get_y() > 158:
             pdf.add_page()
             imprimir_encabezado()
 
-          pdf.ln(2.5)
-          pdf.set_font("Arial", "", 4.5)
+          pdf.ln(2.0)
+          pdf.set_font("Arial", "", 4.2)
           nota_legal = "CON FUNDAMENTO EN LO DISPUESTO POR LOS ARTÍCULOS 149 V EN FRACCIÓN II DE LA CONSTITUCIÓN POLÍTICA DEL ESTADO DE HIDALGO; 7 FRACCIÓN III DE LA LEY GENERAL DE RESPONSABILIDADES ADMINISTRATIVAS; 2 PÁRRAFO ÚNICO DE LA LEY ORGÁNICA DE LA ADMINISTRACIÓN PÚBLICA DEL ESTADO DE HIDALGO; 4 FRACCIÓN VI, 6 FRACCIÓN IV Y 45 SÉPTIMO Y OCTAVO PÁRRAFO DE LAS NORMAS GENERALES PARA ADMINISTRAR Y CONTROLAR LOS BIENES MUEBLES... RECIBÍ DE COMPLETA CONFORMIDAD LOS BIENES MUEBLES ANTES LISTADOS."
           
           y_nota = pdf.get_y()
-          pdf.rect(6, y_nota, 267, 10)
-          pdf.set_xy(7.5, y_nota + 1.0)
-          pdf.multi_cell(264, 2.5, nota_legal, 0, "J")
-          pdf.ln(3.5)
+          pdf.rect(6, y_nota, 267, 9)
+          pdf.set_xy(7.5, y_nota + 0.8)
+          pdf.multi_cell(264, 2.3, nota_legal, 0, "J")
+          pdf.ln(2.5)
 
           y_firma = pdf.get_y()
-          pdf.rect(6, y_firma, 88, 18)
-          pdf.rect(95, y_firma, 88, 18)
-          pdf.rect(184, y_firma, 89, 18)
+          pdf.rect(6, y_firma, 88, 16)
+          pdf.rect(95, y_firma, 88, 16)
+          pdf.rect(184, y_firma, 89, 16)
 
-          pdf.set_font("Arial", "B", 5)
-          pdf.set_xy(6, y_firma + 1.5); pdf.cell(88, 2.5, "FIRMA DEL SERVIDOR PÚBLICO RESPONSABLE", 0, 0, "C")
-          pdf.set_xy(95, y_firma + 1.5); pdf.cell(88, 2.5, "AVALA", 0, 0, "C")
-          pdf.set_xy(184, y_firma + 1.5); pdf.cell(89, 2.5, "Vo.Bo.", 0, 1, "C")
+          pdf.set_font("Arial", "B", 4.5)
+          pdf.set_xy(6, y_firma + 1.2); pdf.cell(88, 2, "FIRMA DEL SERVIDOR PÚBLICO RESPONSABLE", 0, 0, "C")
+          pdf.set_xy(95, y_firma + 1.2); pdf.cell(88, 2, "AVALA", 0, 0, "C")
+          pdf.set_xy(184, y_firma + 1.2); pdf.cell(89, 2, "Vo.Bo.", 0, 1, "C")
 
-          pdf.set_font("Arial", "", 5.5)
-          pdf.set_xy(10, y_firma + 7.5); pdf.cell(80, 2, "_" * 42, 0, 0, "C")
-          pdf.set_xy(99, y_firma + 7.5); pdf.cell(80, 2, "_" * 42, 0, 0, "C")
-          pdf.set_xy(188, y_firma + 7.5); pdf.cell(81, 2, "_" * 42, 0, 1, "C")
+          pdf.set_font("Arial", "", 5)
+          pdf.set_xy(10, y_firma + 6.5); pdf.cell(80, 2, "_" * 42, 0, 0, "C")
+          pdf.set_xy(99, y_firma + 6.5); pdf.cell(80, 2, "_" * 42, 0, 0, "C")
+          pdf.set_xy(188, y_firma + 6.5); pdf.cell(81, 2, "_" * 42, 0, 1, "C")
 
-          pdf.set_font("Arial", "B", 5)
-          pdf.set_xy(6, y_firma + 11.0); pdf.cell(88, 2.5, firmante_responsable, 0, 0, "C")
-          pdf.set_xy(95, y_firma + 11.0); pdf.cell(88, 2.5, firmante_avala, 0, 0, "C")
-          pdf.set_xy(184, y_firma + 11.0); pdf.cell(89, 2.5, "MTRA. ROSA LETICIA MUÑOZ CHÁVEZ", 0, 1, "C")
+          pdf.set_font("Arial", "B", 4.5)
+          pdf.set_xy(6, y_firma + 9.5); pdf.cell(88, 2, firmante_responsable, 0, 0, "C")
+          pdf.set_xy(95, y_firma + 9.5); pdf.cell(88, 2, firmante_avala, 0, 0, "C")
+          pdf.set_xy(184, y_firma + 9.5); pdf.cell(89, 2, "MTRA. ROSA LETICIA MUÑOZ CHÁVEZ", 0, 1, "C")
 
-          pdf.set_font("Arial", "", 4.5)
-          pdf.set_xy(184, y_firma + 14.0); pdf.cell(89, 2.5, "COORDINADORA ADMINISTRATIVA", 0, 1, "C")
+          pdf.set_font("Arial", "", 4)
+          pdf.set_xy(184, y_firma + 12.0); pdf.cell(89, 2, "COORDINADORA ADMINISTRATIVA", 0, 1, "C")
 
           output_pdf = "resguardo_area.pdf"
           pdf.output(output_pdf)
