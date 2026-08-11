@@ -382,16 +382,27 @@ with tab_edicion:
             pdf.add_page()
             imprimir_encabezado()
 
-          pdf.ln(2.0)
+          # --- NOTA LEGAL COMPACTA Y SIN CRUCES ---
+          pdf.ln(3) # Espacio limpio desde la tabla
           pdf.set_font("Arial", "", 4.2)
           nota_legal = "CON FUNDAMENTO EN LO DISPUESTO POR LOS ARTÍCULOS 149 V EN FRACCIÓN II DE LA CONSTITUCIÓN POLÍTICA DEL ESTADO DE HIDALGO; 7 FRACCIÓN III DE LA LEY GENERAL DE RESPONSABILIDADES ADMINISTRATIVAS; 2 PÁRRAFO ÚNICO DE LA LEY ORGÁNICA DE LA ADMINISTRACIÓN PÚBLICA DEL ESTADO DE HIDALGO; 4 FRACCIÓN VI, 6 FRACCIÓN IV Y 45 SÉPTIMO Y OCTAVO PÁRRAFO DE LAS NORMAS GENERALES PARA ADMINISTRAR Y CONTROLAR LOS BIENES MUEBLES... RECIBÍ DE COMPLETA CONFORMIDAD LOS BIENES MUEBLES ANTES LISTADOS."
           
           y_nota = pdf.get_y()
-          pdf.rect(6, y_nota, 267, 9)
-          pdf.set_xy(7.5, y_nota + 0.8)
+          
+          # Dibujamos primero el texto para medir exactamente cuánt alto ocupó
+          pdf.set_xy(7.5, y_nota + 1.0)
+          # Guardamos la posición Y donde termina el texto de la nota legal
           pdf.multi_cell(264, 2.3, nota_legal, 0, "J")
-          pdf.ln(2.5)
+          y_fin_nota = pdf.get_y()
+          
+          # Ahora sí dibujamos el rectángulo de la nota adaptado al alto real que ocupó el texto
+          alto_caja_nota = (y_fin_nota - y_nota) + 2.0
+          pdf.rect(6, y_nota, 267, alto_caja_nota)
+          
+          # Espacio controlado antes de las firmas
+          pdf.set_xy(6, y_fin_nota + 2)
 
+          # --- BLOQUE DE FIRMAS ORDENADO ---
           y_firma = pdf.get_y()
           pdf.rect(6, y_firma, 88, 16)
           pdf.rect(95, y_firma, 88, 16)
