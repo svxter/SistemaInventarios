@@ -285,44 +285,47 @@ with tab_edicion:
         st.warning("Por favor selecciona un **Área específica** en la barra lateral para generar su resguardo individual.")
       else:
         try:
-          # Usamos márgenes laterales de 6 mm para aprovechar mejor la hoja horizontal (Ancho total útil = 267 mm)
           pdf = FPDF(orientation="L", unit="mm", format="letter")
           pdf.set_margins(left=6, top=8, right=6)
           pdf.add_page()
-          pdf.set_auto_page_break(auto=True, margin=6)
+          # Desactivamos el auto page break predeterminado para controlarlo nosotros con precisión
+          pdf.set_auto_page_break(auto=False, margin=6)
 
-          if os.path.exists("BIENESTAR8.png"):
-            pdf.image("BIENESTAR8.png", x=6, y=6, w=55)
+          def imprimir_encabezado():
+            if os.path.exists("BIENESTAR8.png"):
+              pdf.image("BIENESTAR8.png", x=6, y=6, w=55)
+            pdf.set_font("Arial", "B", 9)
+            pdf.cell(0, 5, "SECRETARÍA DE BIENESTAR E INCLUSIÓN SOCIAL", 0, 1, "C")
+            pdf.set_font("Arial", "B", 7.5)
+            pdf.cell(0, 3.5, "COORDINACIÓN ADMINISTRATIVA", 0, 1, "C")
+            pdf.cell(0, 3.5, "INVENTARIO DE BIENES MUEBLES 2026", 0, 1, "C")
+            pdf.cell(0, 3.5, "RESGUARDO INDIVIDUAL INTERNO", 0, 1, "C")
+            pdf.ln(2)
 
-          pdf.set_font("Arial", "B", 9)
-          pdf.cell(0, 5, "SECRETARÍA DE BIENESTAR E INCLUSIÓN SOCIAL", 0, 1, "C")
-          pdf.set_font("Arial", "B", 7.5)
-          pdf.cell(0, 3.5, "COORDINACIÓN ADMINISTRATIVA", 0, 1, "C")
-          pdf.cell(0, 3.5, "INVENTARIO DE BIENES MUEBLES 2026", 0, 1, "C")
-          pdf.cell(0, 3.5, "RESGUARDO INDIVIDUAL INTERNO", 0, 1, "C")
-          pdf.ln(2)
+            fecha_hoy = datetime.now().strftime("%d/%m/%Y")
+            pdf.set_font("Arial", "B", 7.5)
+            pdf.cell(15, 5, "AREA:", 0, 0, "L")
+            pdf.set_font("Arial", "", 7.5)
+            pdf.cell(150, 5, area_seleccionada, 0, 0, "L")
+            pdf.set_font("Arial", "B", 7.5)
+            pdf.cell(20, 5, "FECHA:", 0, 0, "R")
+            pdf.set_font("Arial", "", 7.5)
+            pdf.cell(42, 5, fecha_hoy, 0, 1, "R")
+            pdf.ln(1)
 
-          fecha_hoy = datetime.now().strftime("%d/%m/%Y")
-          pdf.set_font("Arial", "B", 7.5)
-          pdf.cell(15, 5, "AREA:", 0, 0, "L")
-          pdf.set_font("Arial", "", 7.5)
-          pdf.cell(150, 5, area_seleccionada, 0, 0, "L")
-          pdf.set_font("Arial", "B", 7.5)
-          pdf.cell(20, 5, "FECHA:", 0, 0, "R")
-          pdf.set_font("Arial", "", 7.5)
-          pdf.cell(42, 5, fecha_hoy, 0, 1, "R")
-          pdf.ln(1)
+            # Cabecera de la tabla
+            global headers, widths
+            pdf.set_font("Arial", "B", 6)
+            for i, h in enumerate(headers):
+              pdf.cell(widths[i], 4.5, h, 1, 0, "C")
+            pdf.ln()
 
-          # Anchos optimizados que suman exactamente 267 mm (ancho útil de la página)
           headers = ["No.", "INVENTARIO", "DESCRIPCION", "MARCA", "MODELO", "SERIE", "CARACTERISTICAS", "NOMBRE DEL USUARIO"]
           widths = [8, 26, 42, 18, 18, 14, 75, 66]
 
-          pdf.set_font("Arial", "B", 6)
-          for i, h in enumerate(headers):
-            pdf.cell(widths[i], 4.5, h, 1, 0, "C")
-          pdf.ln()
-
+          imprimir_encabezado()
           pdf.set_font("Arial", "", 5.5)
+
           for idx, (_, row) in enumerate(df_filtrado.iterrows(), start=1):
             cell_data = [
                 str(idx),
@@ -344,8 +347,15 @@ with tab_edicion:
                 if lines > max_lines: max_lines = lines
 
             row_height = max(4.5, max_lines * line_h + 1.0)
-            x_start, y_start = pdf.get_x(), pdf.get_y()
 
+            # ESPACIO MÍNIMO NECESARIO ANTES DE SALTO DE PÁGINA (Tabla + Nota + Firmas = ~50mm requeridos al final)
+            espacio_footer_necesario = 45
+            if pdf.get_y() + row_height > (215 - espacio_footer_necesario):
+              pdf.add_page()
+              imprimir_encabezado()
+              pdf.set_font("Arial", "", 5.5)
+
+            x_start, y_start = pdf.get_x(), pdf.get_y()
             for i, text in enumerate(cell_data):
               current_x, current_y = pdf.get_x(), pdf.get_y()
               pdf.rect(current_x, current_y, widths[i], row_height)
@@ -355,7 +365,12 @@ with tab_edicion:
 
             pdf.set_xy(x_start, y_start + row_height)
 
-          # --- NOTA LEGAL COMPACTA ---
+          # --- BLOQUE DE CIERRE (NOTA LEGAL Y FIRMAS) ---
+          # Si no hay espacio suficiente para la nota y las firmas en esta página, salta limpio a una nueva
+          if pdf.get_y() > 155:
+            pdf.add_page()
+            imprimir_encabezado()
+
           pdf.ln(2.5)
           pdf.set_font("Arial", "", 4.5)
           nota_legal = "CON FUNDAMENTO EN LO DISPUESTO POR LOS ARTÍCULOS 149 V EN FRACCIÓN II DE LA CONSTITUCIÓN POLÍTICA DEL ESTADO DE HIDALGO; 7 FRACCIÓN III DE LA LEY GENERAL DE RESPONSABILIDADES ADMINISTRATIVAS; 2 PÁRRAFO ÚNICO DE LA LEY ORGÁNICA DE LA ADMINISTRACIÓN PÚBLICA DEL ESTADO DE HIDALGO; 4 FRACCIÓN VI, 6 FRACCIÓN IV Y 45 SÉPTIMO Y OCTAVO PÁRRAFO DE LAS NORMAS GENERALES PARA ADMINISTRAR Y CONTROLAR LOS BIENES MUEBLES... RECIBÍ DE COMPLETA CONFORMIDAD LOS BIENES MUEBLES ANTES LISTADOS."
@@ -366,7 +381,6 @@ with tab_edicion:
           pdf.multi_cell(264, 2.5, nota_legal, 0, "J")
           pdf.ln(3.5)
 
-          # --- BLOQUE DE FIRMAS COMPACTO ---
           y_firma = pdf.get_y()
           pdf.rect(6, y_firma, 88, 18)
           pdf.rect(95, y_firma, 88, 18)
